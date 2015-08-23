@@ -1,0 +1,84 @@
+\ProvidesFile{gbt7714_2005_n.cbx}
+
+\ExecuteBibliographyOptions{labelnumber,sortcites}
+\renewcommand*{\multicitedelim}{\addcomma\space}
+
+\newcounter{gbt@cbx@cnta}
+\setcounter{gbt@cbx@cnta}{0}
+
+\newcommand*{\mksuperbrackets}[1]{%
+    \mkbibsuperscript{\mkbibbrackets{#1}}%
+}
+
+\newbibmacro*{gbt@cbx@num@init}{%
+	\setcounter{gbt@cbx@cnta}{0}%
+	\global\undef\gbt@cbx@last@key%
+	\global\undef\gbt@cbx@last@number%
+	\printtext{\bibopenbracket}}
+	
+\newbibmacro*{gbt@cbx@num@main}{%
+	\ifnumgreater{\value{gbt@cbx@cnta}}{0}
+		{\usebibmacro{gbt@cbx@num@range@mode}}
+		{\usebibmacro{gbt@cbx@num@normal@mode}}%
+		\savefield{labelnumber}{\gbt@cbx@last@number}%
+		\savefield{entrykey}{\gbt@cbx@last@key}}
+		
+\newbibmacro*{gbt@cbx@num@range@mode}{%
+	\ifnumequal{\thefield{labelnumber}}{\gbt@cbx@last@number + 1}
+		{%
+			\savefield{labelnumber}{\gbt@cbx@last@number}%
+			\savefield{entrykey}{\gbt@cbx@last@key}%
+			\addtocounter{gbt@cbx@cnta}{1}%
+		}%
+		{%
+			\usebibmacro{gbt@cbx@num@print@last}%
+			\setcounter{gbt@cbx@cnta}{0}%
+			\usebibmacro{gbt@cbx@num@normal@mode}%
+		}}
+		
+\newbibmacro*{gbt@cbx@num@print@last}{%
+	\ifnumgreater{\value{gbt@cbx@cnta}}{0}
+	{%
+		\ifnumgreater{\value{gbt@cbx@cnta}}{1}
+			{\printtext{\bibrangedash}}
+			{\printtext{\multicitedelim}}%
+		\usebibmacro{gbt@cbx@num@print}{\gbt@cbx@last@key}{\gbt@cbx@last@number}%
+		%\bibhyperref[\gbt@cbx@last@key]{\printtext{\gbt@cbx@last@number}}%
+	}
+	{}}
+
+\newbibmacro*{gbt@cbx@num@normal@mode}{%
+	\ifundef\gbt@cbx@last@number%
+		{\usebibmacro{gbt@cbx@num@print}{entrykey}{\thefield{labelnumber}}}
+		{\ifnumequal{\thefield{labelnumber}}{\gbt@cbx@last@number + 1}
+			{\setcounter{gbt@cbx@cnta}{1}}
+			{%
+				\printtext{\multicitedelim}%
+				\usebibmacro{gbt@cbx@num@print}{entrykey}{\thefield{labelnumber}}%
+			}%
+		}}
+		
+%{key}{number}
+\newbibmacro*{gbt@cbx@num@print}[2]{%
+	\bibhyperref[#1]{\printtext{#2}}}
+
+\DeclareFieldFormat{plain}{#1}
+\newbibmacro*{gbt@cbx@num@print@postnote}{%
+	\printfield[plain]{postnote}}
+\newbibmacro*{gbt@cbx@num@print@prenote}{%
+	\printfield[plain]{prenote}}
+	
+%%macro for author-year style
+
+\DeclareCiteCommand{\cite}[\mkbibsuperscript]
+{%
+	\usebibmacro{gbt@cbx@num@print@prenote}%
+	\usebibmacro{gbt@cbx@num@init}}
+{\usebibmacro{gbt@cbx@num@main}}
+{}
+{%
+	\usebibmacro{gbt@cbx@num@print@last}%
+	\printtext{\bibclosebracket}%
+	\usebibmacro{gbt@cbx@num@print@postnote}}%
+
+\endinput
