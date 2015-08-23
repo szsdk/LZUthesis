@@ -1,0 +1,672 @@
+%%common macros for gbt7714
+
+\newtoggle{gbt@inits}\toggletrue{gbt@inits}
+\newtoggle{gbt@lastnamefirst}\toggletrue{gbt@lastnamefirst}
+\newtoggle{gbt@verbose}\togglefalse{gbt@verbose}
+
+%remove`.'
+\DeclareListParser{\gbt@do@tok@list}{}
+\newcommand*{\gbt@sub@inits@period}[1]{%
+    \renewcommand*{\do}[1]{%
+		\ifstrequal{##1}{.}{}{##1}}%
+    \edef\gbt@tmpa{#1}%
+    \expandafter\gbt@do@tok@list\expandafter{\gbt@tmpa}}
+
+\newcommand*{\gbt@handle@inits}{%
+    \iftoggle{gbt@inits}%
+    {%
+		\ifdef{\bibinitperiod}{\renewcommand*{\bibinitperiod}{}}{%
+			\renewcommand*{\mkbibnamefirst}[1]{\gbt@sub@inits@period{##1}}}%
+	}%
+    {%
+		\ifdef{\bibinitperiod}{\renewcommand*{\bibinitperiod}{\adddot}}{%
+			\renewcommand*{\mkbibnamefirst}[1]{##1}}%
+	}}
+\DeclareBibliographyOption{gbtinits}[true]{%
+	\settoggle{gbt@inits}{#1}%
+	\gbt@handle@inits}
+\gbt@handle@inits
+
+\DeclareBibliographyOption{lastnamefirst}[true]{\settoggle{gbt@lastnamefirst}{#1}}
+\DeclareBibliographyOption{gbtverbose}[true]{\settoggle{gbt@verbose}{#1}}
+
+%%url setup
+\newcommand*{\gbt@biburlsetup}{\urlstyle{same}}
+\let\gbt@biburlsetup@=\biburlsetup
+\renewcommand*{\biburlsetup}{\gbt@biburlsetup@\gbt@biburlsetup}
+
+\def\gbt@cnlabel@one{{zh}}
+\def\gbt@cnlabel@two{{cn}}
+
+%define full width punctuation marks
+\def\abx@full@comma{\ifdim\lastkern>\z@\unkern\fi\abx@puncthook{，}}
+\def\abx@full@dot{\ifdim\lastkern>\z@\unkern\fi．}
+\def\abx@full@semicolon{\abx@puncthook{；}}
+\def\abx@full@colon{\abx@puncthook{：}}
+\def\abx@full@exclam{\abx@puncthook{！}}
+\def\abx@full@question{\abx@puncthook{？}}
+\mathchardef\blx@sf@full@comma=1003
+\mathchardef\blx@sf@full@dot=1002
+\mathchardef\blx@sf@full@semicolon=1004
+\mathchardef\blx@sf@full@colon=1005
+\mathchardef\blx@sf@full@exclam=1007
+\mathchardef\blx@sf@full@question=1008
+\protected\def\gbt@addfullcomma{\blx@addpunct{full@comma}}
+\protected\def\gbt@addfulldot{\blx@addpunct{full@dot}}
+\protected\def\gbt@addfullsemicolon{\blx@addpunct{full@semicolon}}
+\protected\def\gbt@addfullcolon{\blx@addpunct{full@colon}}
+\protected\def\gbt@addfullexclam{\blx@addpunct{full@exclam}}
+\protected\def\gbt@addfullquestion{\blx@addpunct{full@question}}
+
+\newcommand*{\gbt@addcomma}{\addcomma}
+\newcommand*{\gbt@addsemicolon}{\addsemicolon}
+\newcommand*{\gbt@addcolon}{\addcolon}
+\newcommand*{\gbt@addexclam}{\addexclam}
+\newcommand*{\gbt@addquestion}{\addquestion}
+
+
+%macro definitions
+%en zh
+\newcommand*{\gbt@if@lang@cn}[2]{%
+    \ifboolexpr{ test {\iflistequals{language}{\gbt@cnlabel@one}} 
+                 or 
+                 test {\iflistequals{language}{\gbt@cnlabel@two}}}
+    {#1}{#2}}
+
+%parse range like 123-456, results in \gbt@range@first and \gbt@range@second
+\def\gbt@parse@range#1{
+    \edef\gbt@tmpa{#1}%
+    \expandafter\gbt@parse@rangei\gbt@tmpa-\@empty}
+\def\gbt@parse@rangei#1-#2\@empty{%
+    \global\def\gbt@range@first{#1}%
+    \def\gbt@tmpa{#2}%
+    \ifx\gbt@tmpa\@empty%
+        \global\def\gbt@range@second{}%
+    \else%
+        \gbt@parse@rangeii#2\@empty%
+    \fi}
+\def\gbt@parse@rangeii#1-#2\@empty{%
+    \def\gbt@tmpa{#2}%
+    \ifx\gbt@tmpa\@empty%
+        \global\def\gbt@range@second{#1}%
+    \else%
+        \gbt@parse@rangeii#2\@empty%
+    \fi}
+
+%make date from {year}{month}{day}
+\newcommand*{\gbt@mkdate}[3]{\blx@isodate{#1}{#2}{#3}}
+
+\renewcommand*{\newunitpunct}{\adddot\addspace}
+
+%%name 
+\newcommand*{\gbt@cn@multinamedelim}{\gbt@addcomma\space}
+\newcommand*{\gbt@en@multinamedelim}{\gbt@addcomma\space}
+\newcommand*{\gbt@str@cn@addothers}{等}
+\newcommand*{\gbt@str@en@addothers}{et\addabbrvspace al\adddot}
+
+\DeclareNameFormat{gbt@name@fmt}{%
+    \gbt@if@lang@cn%
+        {\usebibmacro{gbt@cn@name@fmt}{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}}%
+        {\usebibmacro{gbt@en@name@fmt}{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}}}
+
+\newbibmacro{gbt@cn@name@fmt}[8]{%
+    \usebibmacro{gbt@cn@name@delim}#1#3%
+    \usebibmacro{gbt@cn@name@andothers}%
+    \usebibmacro{gbt@cn@name@appends}}
+
+\newbibmacro{gbt@cn@name@delim}{%
+    \ifnumgreater{\value{listcount}}{\value{liststart}}%
+        {\gbt@cn@multinamedelim}
+        {}}
+
+\newbibmacro{gbt@cn@name@andothers}{%
+    \ifboolexpr{
+        test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+        and
+        test \ifmorenames}
+    {\gbt@cn@multinamedelim\gbt@str@cn@addothers}
+    {}}
+
+\newcommand*{\gbt@str@cn@appends}{}
+\newbibmacro*{gbt@cn@name@appends}{%
+    \ifnumequal{\value{listcount}}{\value{liststop}}%
+    {%
+        \ifdefempty{\gbt@str@cn@appends}
+        {}
+        {%
+            \ifmorenames%
+                {}%
+                {\gbt@cn@multinamedelim}%
+                \gbt@str@cn@appends%
+        }%
+    }%
+    {}}
+
+\newbibmacro{gbt@en@name@fmt}[8]{%
+    \ifboolexpr{test {\iffirstinits} or togl {gbt@inits}}%
+        {%
+            \iftoggle{gbt@lastnamefirst}%
+                {\usebibmacro{gbt@name@last@first}{#1}{#4}{#5}{#7}}%
+                {\usebibmacro{gbt@name@first@last}{#1}{#4}{#5}{#7}}%
+        }%
+        {%
+            \iftoggle{gbt@lastnamefirst}%
+                {\usebibmacro{gbt@name@last@first}{#1}{#3}{#5}{#7}}%
+                {\usebibmacro{gbt@name@first@last}{#1}{#3}{#5}{#7}}%
+        }%
+        \usebibmacro{gbt@en@name@andothers}}
+
+\newbibmacro*{gbt@name@first@last}[4]{%
+  \usebibmacro{gbt@en@name@delim}%
+  \ifblank{#2}{}{\mkbibnamefirst{#2}\isdot\addlowpenspace}%
+  \ifblank{#3}{}{%
+    \mkbibnameprefix{#3}\isdot%
+    \ifpunctmark{'}%
+      {}%
+      {\ifuseprefix{\addhighpenspace}{\addlowpenspace}}}%
+  \mkbibnamelast{#1}\isdot%
+  \ifblank{#4}{}{\addlowpenspace\mkbibnameaffix{#4}\isdot}}
+
+\newbibmacro*{gbt@name@last@first}[4]{%
+    \ifuseprefix%
+        {%
+            \usebibmacro{gbt@en@name@delim}%
+            \ifblank{#3}{}{%
+                \ifcapital%
+                {\mkbibnameprefix{\MakeCapital{#3}}\isdot}%
+                {\mkbibnameprefix{#3}\isdot}%
+                \ifpunctmark{'}{}{\addhighpenspace}}%
+            \mkbibnamelast{#1}\isdot%
+            \ifblank{#2}{}{\addlowpenspace\mkbibnamefirst{#2}\isdot}%
+            \ifblank{#4}{}{\gbt@addcomma\mkbibnameaffix{#4}\isdot}%
+        }%
+        {%
+            \usebibmacro{gbt@en@name@delim}%
+            \mkbibnamelast{#1}\isdot%
+            \ifblank{#2}{}{\addlowpenspace\mkbibnamefirst{#2}\isdot}%
+            \ifblank{#3}{}{\addlowpenspace\mkbibnameprefix{#3}\isdot}%
+            \ifblank{#4}{}{\gbt@addcomma\mkbibnameaffix{#4}\isdot}%
+        }}
+\newbibmacro*{gbt@en@name@delim}{%
+  \ifnumgreater{\value{listcount}}{\value{liststart}}
+    {\gbt@en@multinamedelim}
+    {}}
+	
+\newbibmacro*{gbt@en@name@andothers}{%
+  \ifboolexpr{
+    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+    and
+    test \ifmorenames}
+    {\gbt@en@multinamedelim\gbt@str@en@addothers}
+    {}}
+
+%{fieldname}{cn message}{en message}
+\newbibmacro*{gbt@print@names}[4][]{%
+    \renewcommand*{\gbt@str@cn@appends}{#1}%
+    \ifboolexpr{%
+        test {\ifnameundef{#2}}
+        and
+        togl {gbt@verbose}}%
+    {\gbt@if@lang@cn%
+        {\printtext{#3}}%
+        {\printtext{#4}}}%
+    {\printnames[gbt@name@fmt]{#2}}}
+\newbibmacro*{gbt@print@names@}[2][]{%
+    \renewcommand*{\gbt@str@cn@appends}{#1}%
+    \printnames[gbt@name@fmt]{#2}}
+
+\newcommand*{\gbt@str@cn@noauthor}{\emph{作者空缺}}
+\newcommand*{\gbt@str@en@noauthor}{\emph{NO AUTHOR}}
+\newbibmacro*{gbt@print@author}{%
+    \usebibmacro{gbt@print@names}{author}{\gbt@str@cn@noauthor}{\gbt@str@en@noauthor}}
+\newbibmacro*{gbt@print@author@}{%
+    \usebibmacro{gbt@print@names@}{author}}
+
+\newcommand*{\gbt@str@cn@nobookauthor}{\emph{专著作者空缺}}
+\newcommand*{\gbt@str@en@nobookauthor}{\emph{NO BOOK AUTHOR}}
+\newbibmacro*{gbt@print@bookauthor}{%
+    \usebibmacro{gbt@print@names}{bookauthor}{\gbt@str@cn@nobookauthor}{\gbt@str@en@nobookauthor}}
+\newbibmacro*{gbt@print@bookauthor@}{%
+    \usebibmacro{gbt@print@names@}{bookauthor}}
+
+\newcommand*{\gbt@str@cn@noeditor}{\emph{主要责任者空缺}}
+\newcommand*{\gbt@str@en@noeditor}{\emph{NO EDITOR}}
+\newbibmacro*{gbt@print@editor}{%
+    \usebibmacro{gbt@print@names}{editor}{\gbt@str@cn@noeditor}{\gbt@str@en@noeditor}}
+\newbibmacro*{gbt@print@editor@}{%
+    \usebibmacro{gbt@print@names@}{editor}}
+%%translator
+\newcommand*{\gbt@str@cn@translate}{译}
+\newbibmacro*{gbt@print@translator}{%
+    \ifboolexpr{%
+        %test \ifusetranslator
+        %and
+        not test {\ifnameundef{translator}}}
+        {\usebibmacro{gbt@print@names@}[\gbt@str@cn@translate]{translator}}
+        {}}
+\newbibmacro*{gbt@print@translator@}{\usebibmacro{gbt@print@translator}}
+
+%%title
+\newcommand*{\gbt@title@subtitle@delim}{\addcolon\addthinspace}
+
+\DeclareFieldFormat{gbt@title@fmt}{#1}
+\DeclareFieldFormat{gbt@titleaddon@fmt}{#1}
+\DeclareFieldFormat{gbt@liter@type@fmt}{\nobreak\mkbibbrackets{\nobreak#1}\nobreak}
+
+\newcommand*{\gbt@print@@title}[3]{%
+    \ifboolexpr{%
+        test {\iffieldundef{#1}}
+        and
+        togl {gbt@verbose}}
+    {\gbt@if@lang@cn%
+        {\printtext{#2}}%
+        {\printtext{#3}}}%
+    {\printfield[gbt@title@fmt]{#1}}%
+    \iffieldundef{#1addon}{}%
+        {%
+            \setunit*{\gbt@title@subtitle@delim}%
+            \printfield[gbt@titleaddon@fmt]{#1addon}%
+        }}
+\newcommand*{\gbt@print@@title@}[1]{%
+   \printfield[gbt@title@fmt]{#1}% 
+    \iffieldundef{#1}{}{%
+        \setunit*{\gbt@title@subtitle@delim}%
+        \printfield[gbt@titleaddon@fmt]{#1addon}}}%
+
+\newcommand*{\gbt@print@@liter@type}{%
+    \iffieldundef{usera}{}{%
+        \printfield[gbt@liter@type@fmt]{usera}}}
+
+%title
+\newcommand*{\gbt@str@cn@notitle}{\emph{文献名称空缺}}
+\newcommand*{\gbt@str@en@notitle}{\emph{NO TITLE}}
+
+\newbibmacro*{gbt@print@title}{%
+    \gbt@print@@title{title}{\gbt@str@cn@notitle}{\gbt@str@en@notitle}%
+    \setunit*{}%
+    \gbt@print@@liter@type}
+\newbibmacro*{gbt@print@title@}{%
+    \printfield[gbt@title@fmt]{title}%
+     \iffieldundef{title}{}{%
+        \setunit*{\gbt@title@subtitle@delim}%
+        \printfield[gbt@titleaddon@fmt]{titleaddon}%
+        \setunit{}%
+        \gbt@print@@liter@type}}
+
+
+%booktitle
+\newcommand*{\gbt@str@cn@nobooktitle}{\emph{专著题名空缺}}
+\newcommand*{\gbt@str@en@nobooktitle}{\emph{NO BOOK TITLE}}
+\newbibmacro*{gbt@print@booktitle}{%
+    \gbt@print@@title{booktitle}{\gbt@str@cn@nobooktitle}{\gbt@str@en@nobooktitle}}
+\newbibmacro*{gbt@print@booktitle@}{\gbt@print@@title@{booktitle}}
+
+%journaltitle
+\newcommand*{\gbt@str@cn@nojournaltitle}{\emph{期刊名称空缺}}
+\newcommand*{\gbt@str@en@nojournaltitle}{\emph{NO JOURNAL TITLE}}
+\newbibmacro*{gbt@print@journaltitle}{%
+    \gbt@print@@title{journaltitle}{\gbt@str@cn@nojournaltitle}{\gbt@str@en@nojournaltitle}}
+\newbibmacro*{gbt@print@journal@title@}{\gbt@print@@title@{journaltitle}}
+
+%%edition
+\newbibmacro*{gbt@print@edition}{%
+    \printfield[gbt@edition@format]{edition}}
+
+\newbibmacro*{gbt@print@edition@}{%
+    \printfield[gbt@edition@format]{edition}}
+
+\DeclareFieldFormat{gbt@edition@format}{%
+    \gbt@if@lang@cn%
+    {%
+        \ifinteger{#1}
+            {\gbt@cn@mk@num@edition{#1}}
+            {\gbt@cn@mk@chr@edition{#1}}%
+    }%
+    {%
+        \ifinteger{#1}
+            {\gbt@en@mk@num@edition{#1}}
+            {\gbt@en@mk@chr@edition{#1}}%
+    }}
+\newcommand*{\gbt@cn@mk@num@edition}[1]{%
+    #1版}
+\newcommand*{\gbt@cn@mk@chr@edition}[1]{%
+    #1\isdot}
+\newcommand*{\gbt@en@mk@num@edition}[1]{%
+    \mkbibordinal{#1}~ed\adddot}
+\newcommand*{\gbt@en@mk@chr@edition}[1]{%
+    #1\isdot}
+
+%%publication items--location:publisher(institution),date:pages(date)[urldate]
+\newcommand*{\gbt@cn@str@no@location}{出版地不详}
+\newcommand*{\gbt@en@str@no@location}{S\adddot~l\adddot}
+\newcommand*{\gbt@cn@str@no@publisher}{出版者不详}
+\newcommand*{\gbt@en@str@no@publisher}{s\adddot~n\adddot}
+\newcommand*{\gbt@location@publisher@delim}{\gbt@addcolon\space}
+\newcommand*{\gbt@publisher@date@delim}{\gbt@addcomma\space}
+\newcommand*{\gbt@location@institution@delim}{\gbt@addcolon\space}
+\newcommand*{\gbt@institution@date@delim}{\gbt@addcomma\space}
+
+\DeclareListFormat{gbt@location@fmt}{%
+    \ifnumequal{\value{listcount}}{1}%
+        {#1\isdot}
+        {}}
+\DeclareListFormat{gbt@publisher@fmt}{%
+    \ifnumequal{\value{listcount}}{1}%
+        {#1\isdot}
+        {}}
+\DeclareListFormat{gbt@institution@fmt}{%
+    \ifnumequal{\value{listcount}}{1}%
+        {#1\isdot}
+        {}}
+\DeclareFieldFormat{gbt@no@location@fmt}{\mkbibbrackets{#1}}
+\DeclareFieldFormat{gbt@no@publisher@fmt}{\mkbibbrackets{#1}}
+\DeclareFieldFormat{gbt@urldate@fmt}{\mkbibbrackets{#1}}
+
+\DeclareFieldFormat{gbt@date@fmt}{#1}
+\newbibmacro*{gbt@print@date}[1][]{%
+    \iffieldundef{#1year}{}{%
+        \printtext[gbt@date@fmt]{\gbt@mkdate{#1year}{#1month}{#1day}}}}
+\DeclareFieldFormat{gbt@urldate@fmt}{\mkbibbrackets{#1}}
+\newbibmacro*{gbt@print@urldate}{%
+    \iffieldundef{urlyear}{}{%
+        \printtext[gbt@urldate@fmt]{\gbt@mkdate{urlyear}{urlmonth}{urlday}}}}
+    
+
+\newcommand*{\gbt@no@location}{%
+    \gbt@if@lang@cn%
+        {\printtext[gbt@no@location@fmt]{\gbt@cn@str@no@location}}
+        {\printtext[gbt@no@location@fmt]{\gbt@en@str@no@location}}}
+
+\newcommand*{\gbt@no@publisher}{%
+    \gbt@if@lang@cn%
+        {\printtext[gbt@no@publisher@fmt]{\gbt@cn@str@no@publisher}}
+        {\printtext[gbt@no@publisher@fmt]{\gbt@en@str@no@publisher}}}
+
+\DeclareFieldFormat{gbt@pages@fmt}{#1}
+\newbibmacro*{gbt@print@pages}{\printfield[gbt@pages@fmt]{pages}}
+
+\newbibmacro*{gbt@print@location@publisher@date}{%
+    \iflistundef{location}%
+        {\gbt@no@location}%
+        {\printlist[gbt@location@fmt]{location}}%
+    \setunit*{\gbt@location@publisher@delim}%
+    \iflistundef{publisher}%
+        {\gbt@no@publisher}%
+        {\printlist[gbt@publisher@fmt]{publisher}}%
+    \iftoggle{gbt@authoryear}{}{%
+        \setunit*{\gbt@publisher@date@delim}%
+        \usebibmacro{gbt@print@date}}}
+
+\newbibmacro*{gbt@print@location@publisher@date@urldate}{%
+    \usebibmacro{gbt@print@location@publisher@date}%
+    \setunit{}%
+    \usebibmacro{gbt@print@urldate}}
+
+\newbibmacro*{gbt@print@location@publisher@date@pages@urldate}{%
+    \usebibmacro{gbt@print@location@publisher@date}%
+    \setunit{\gbt@addcolon}%
+    \usebibmacro{gbt@print@pages}%
+    \setunit{}%
+    \usebibmacro{gbt@print@urldate}}
+
+\newbibmacro*{gbt@print@location@institution@date}{%
+    \iflistundef{location}%
+        {\gbt@no@location}%
+        {\printlist[gbt@location@fmt]{location}}%
+    \setunit*{\gbt@location@institution@delim}%
+    \printlist[gbt@institution@fmt]{institution}%
+    \iftoggle{gbt@authoryear}{}{%
+        \setunit{\gbt@institution@date@delim}%
+        \usebibmacro{gbt@print@date}}}
+
+\newbibmacro*{gbt@print@location@institution@date@urldate}{%
+    \usebibmacro{gbt@print@location@institution@date}%
+    \setunit{}%
+    \usebibmacro{gbt@print@urldate}}
+
+\newbibmacro*{gbt@print@location@institution@date@pages@urldate}{%
+    \usebibmacro{gbt@print@location@institution@date}%
+    \setunit{\gbt@addcolon}%
+    \usebibmacro{gbt@print@pages}%
+    \setunit{}%
+    \usebibmacro{gbt@print@urldate}}
+
+\DeclareFieldFormat{gbt@url@fmt}{\url{#1}}
+\newbibmacro*{gbt@print@url}{\printfield[gbt@url@fmt]{url}}
+
+\DeclareFieldFormat{gbt@number@fmt}{\mkbibparens{#1}}
+
+%{date}{volume macro}{number macro}
+\newcommand*{\gbt@print@@date@volume@number}[3]{%
+        \iftoggle{gbt@authoryear}{}{%
+            \usebibmacro{gbt@print@date}[#1]%
+            \setunit{\gbt@addcomma\addthinspace}}%
+        \expandafter\printtext\expandafter{#2}%
+        \setunit{}%
+        \ifdefempty{#3}{}{%
+            \printtext[gbt@number@fmt]{#3}}}%
+    
+\newbibmacro*{gbt@print@date@volume@number}{%
+    \gbt@parse@range{\thefield{volume}}%
+    \edef\gbt@volume@first{\gbt@range@first}%
+    \edef\gbt@volume@second{\gbt@range@second}%
+    \gbt@parse@range{\thefield{number}}%
+    \edef\gbt@number@first{\gbt@range@first}%
+    \edef\gbt@number@second{\gbt@range@second}%
+    \gbt@print@@date@volume@number{}{\gbt@volume@first}{\gbt@number@first}%
+    \printtext{\bibrangedash}%
+    \iffieldundef{endyear}{}{%
+        \gbt@print@@date@volume@number{end}{\gbt@volume@second}{\gbt@number@second}}}%
+
+\newbibmacro*{gbt@print@journaltitle@date@volume@number@pages@urldate}{%
+    \usebibmacro{gbt@print@journaltitle}%
+    \setunit{\gbt@addcomma\addthinspace}%
+    \edef\gbt@tmpa{\thefield{volume}}%
+    \edef\gbt@tmpb{\thefield{number}}%
+    \gbt@print@@date@volume@number{}{\gbt@tmpa}{\gbt@tmpb}%
+    \setunit{\gbt@addcolon}%
+    \usebibmacro{gbt@print@pages}%
+    \setunit{}%
+    \usebibmacro{gbt@print@urldate}}
+
+\DeclareFieldFormat[patent]{number}{#1}
+\newbibmacro*{gbt@print@patent@title@number}{%
+    \gbt@print@@title{title}{\gbt@en@no@patent@title}{\gbt@cn@no@patent@title}%
+    \printfield{number}%
+    \gbt@print@@liter@type}
+
+
+%%labelyear
+\DeclareFieldFormat{gbt@labelyear@fmt}{#1}
+\DeclareFieldFormat{gbt@extrayear@fmt}{\mknumalph{#1}}
+\newcommand*{\gbt@cn@no@labelyear}{\emph{出版年空缺}}
+\newcommand*{\gbt@en@no@labelyear}{\emph{NO LABEL YEAR}}
+\newbibmacro*{gbt@print@labelyear}{%
+    \iffieldundef{labelyear}%
+    {%
+        \gbt@if@lang@cn%
+            {\printtext{\gbt@cn@no@labelyear}}%
+            {\printtext{\gbt@en@no@labelyear}}%
+    }%
+    {%
+        \printfield[gbt@labelyear@fmt]{labelyear}%
+        \iffieldundef{extrayear}{}{\printfield[gbt@extrayear@fmt]{extrayear}}%
+    }}
+\newbibmacro*{gbt@print@labelyear@}{%
+    \printfield[gbt@labelyear@fmt]{labelyear}}%
+            
+% book entry
+\DeclareBibliographyDriver{book}{%
+    \usebibmacro{gbt@print@author}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@edition@}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@translator}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@publisher@date@pages@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+\newcommand*{\gbt@doubleslash}{\mbox{\slash\slash}\penalty10}
+%inbook entry
+\DeclareBibliographyDriver{inbook}{%
+    \usebibmacro{gbt@print@author}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+	\ifnameundef{translator}{}{%
+		\newunit\newblock%
+		\usebibmacro{gbt@print@translator}}%
+    \setunit{\nobreak\gbt@doubleslash}%
+    \usebibmacro{gbt@print@bookauthor}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@booktitle}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@edition@}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@publisher@date@pages@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+%periodical entry
+\DeclareBibliographyDriver{periodical}{%
+    \usebibmacro{gbt@print@editor}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@date@volume@number}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@publisher@date@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+%article entry
+\DeclareBibliographyDriver{article}{%
+    \usebibmacro{gbt@print@author}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title@}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@journaltitle@date@volume@number@pages@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+%patent entry
+\DeclareBibliographyDriver{patent}{%
+    \usebibmacro{gbt@print@author}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@patent@title@number}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@date}%
+    \usebibmacro{gbt@print@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+%online entry
+\DeclareBibliographyDriver{online}{%
+    \usebibmacro{gbt@print@author@}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \ifboolexpr{test {\iflistundef{location}} and test %
+        {\iflistundef{publisher}} and test {\iffieldundef{date}}}
+        {}
+        {\usebibmacro{gbt@print@location@publisher@date}}%
+    \usebibmacro{gbt@print@urldate}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@url}%
+    \finentry}
+
+\DeclareBibliographyDriver{thesis}{%
+    \usebibmacro{gbt@print@author@}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@institution@date}%
+    \finentry}
+
+\DeclareBibliographyDriver{report}{%
+    \usebibmacro{gbt@print@author@}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@institution@date}%
+    \finentry}
+
+\DeclareBibliographyDriver{proceedings}{%
+    \usebibmacro{gbt@print@editor}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@location@publisher@date}%
+    \finentry}
+
+\DeclareBibliographyDriver{inproceedings}{%
+    \usebibmacro{gbt@print@author}%
+    \iftoggle{gbt@authoryear}%
+    {%
+        \newunit\newblock%
+        \usebibmacro{gbt@print@labelyear}%
+    }{}%
+    \newunit\newblock%
+    \usebibmacro{gbt@print@title}%
+    \setunit{\nobreak\gbt@doubleslash}%
+    \ifnameundef{editor}{}{%
+	    \usebibmacro{gbt@print@editor@}%
+	    \newunit\newblock}%
+    \usebibmacro{gbt@print@booktitle}%
+    \newunit\newblock%
+    \iflistundef{publisher}%
+    {\usebibmacro{gbt@print@location@institution@date@pages@urldate}}%
+    {\usebibmacro{gbt@print@location@publisher@date@pages@urldate}}%
+    \finentry}
