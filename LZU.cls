@@ -7,6 +7,8 @@
 
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
+%=======font
+\RequirePackage{mathptmx}
 
 %=======package
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
@@ -39,8 +41,6 @@
 %\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
 %\headrulecolor{black}
 
-%=======font
-\RequirePackage{mathptmx}
 
 %=======format
 %\renewcommand*\figurename{ \zihao{5}\CTEX@figurename}
@@ -58,7 +58,7 @@
 %=======english title
 \newtoks\entitle
 %=======abstract
-\newcommand{\zhabstract}[2]{%
+\newcommand{\ZhAbstract}[2]{%
     \addcontentsline{toc}{chapter}{中文摘要}
     \thispagestyle{nohead}
     %\thispagestyle{plain}
@@ -67,7 +67,7 @@
         \begin{minipage}{0.8\textwidth}
             \linespread{1}
             \centering
-            \zihao{3}\CJKfontspec{黑体}\bfseries \noindent\@title%
+            \zihao{3}\fontspec{Arial-Bold}\CJKfontspec{黑体}\bfseries \noindent\@title%
         \end{minipage}
     \end{center}%
     \begin{center}%
@@ -84,7 +84,7 @@
     \newpage
 }
 
-\newcommand{\enabstract}[2]{%
+\newcommand{\EnAbstract}[2]{%
     \addcontentsline{toc}{chapter}{英文摘要}
     \thispagestyle{nohead}
     \begin{center}%
@@ -162,7 +162,7 @@
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Arial}\CJKfontspec{黑体}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
             \LZU@label@titleEn
