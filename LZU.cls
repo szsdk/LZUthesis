@@ -5,6 +5,8 @@
 \LoadClass[chinese,fntef, cs4size, twoside]{ctexbook}
 \AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
 
+%\RequirePackage{ctex}
+
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
@@ -12,7 +14,6 @@
 
 %=======package
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
-\RequirePackage{vector}
 \RequirePackage{graphicx}
 \RequirePackage[svgnames]{xcolor}
 
