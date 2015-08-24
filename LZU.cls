@@ -2,7 +2,7 @@
 \ProvidesClass{LZU}
 [2015/023/08  LZU document class]
 
-\LoadClass[fntef, cs4size, twoside]{ctexbook}
+\LoadClass[chinese,fntef, cs4size, twoside]{ctexbook}
 \AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
 
 %=======page
@@ -152,7 +152,7 @@
         {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis}
         \vskip \stretch{1.5}
         %\vspace{\stretch{1}}
-        \zihao{4}
+        \zihao{-3}
         \def\tabcolsep{6pt}
         %\begin{TAB}(r,0.5cm,1.25cm){ll}{ccccccc}
         \expandarg
@@ -162,14 +162,14 @@
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Arial}\CJKfontspec{黑体}\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\CJKfontspec{宋体}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
             \LZU@label@titleEn
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Arial}\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
             \LZU@label@author &
