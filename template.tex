@@ -39,16 +39,16 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \label{lst:simplest}
     \inputminted[breaklines,frame=single,linenos]{latex}{simplest.tex}
 \endgroup
-将代码清单\ref{lst:simplest}中的内容替换\filename{template.tex}中的内容，然后安以下过程编译：
+此代码清单\ref{lst:simplest}保存在\filename{simplest.tex}中，可以安以下过程编译：
 \begin{minted}{bash}
-    xelatex template.tex
-    biber template
-    xelatex template.tex
-    xelatex template.tex
+    xelatex simplest.tex
+    biber simplest
+    xelatex simplest.tex
+    xelatex simplest.tex
 \end{minted}
 在Linux系统中，可以直接输入
 \begin{minted}{bash}
-    make
+    make simplest
 \end{minted}
 自动完成上述过程。
 
