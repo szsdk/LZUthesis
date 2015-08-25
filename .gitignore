@@ -1,0 +1,13 @@
+_minted-template
+*.blg
+*.bcf
+*.fls
+*.run.xml
+*.aux
+*.log
+*.bbl
+*.out
+*.toc
+*.tex.latexmain
+*.fdb_latexmk
+*~

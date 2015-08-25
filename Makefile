@@ -1,10 +1,10 @@
 main:all
 
 all:template.tex
-	xelatex template.tex
+	xelatex -shell-escape template.tex
 	biber template
-	xelatex template.tex
-	xelatex template.tex
+	xelatex -shell-escape template.tex
+	xelatex -shell-escape template.tex
 
 simplest:simplest.tex
 	xelatex simplest.tex
