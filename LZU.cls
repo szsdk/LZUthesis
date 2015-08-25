@@ -13,7 +13,7 @@
 \RequirePackage{mathptmx}
 
 %=======package
-\RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
+\RequirePackage{amsmath,amsfonts,amssymb,bm}
 \RequirePackage{graphicx}
 \RequirePackage[svgnames]{xcolor}
 
@@ -251,6 +251,14 @@
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 %\hypersetup{hidelinks,colorlinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 \RequirePackage[nameinlink]{cleveref}
+\renewcommand{\figureautorefname}{图}
+\crefformat{equation}{#2式(#1)#3}
+\crefformat{figure}{#2图#1#3}
+\crefformat{table}{#2表#1#3}
+\crefformat{chapter}{#2第\zhnumber{#1}章#3}
+\crefformat{section}{#2#1节#3}
+\crefformat{subsection}{#2#1条#3}
+\crefformat{subsubsection}{#2#1款#3}
 
 %grade
 \RequirePackage{tabularx}
@@ -276,3 +284,43 @@
 \end{tabularx}
     \end{center}
 }
+
+%item style
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
+
+%math theorem
+\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
+\theorembodyfont{\rmfamily\songti}
+\theoremheaderfont{\rmfamily\heiti}
+ %\theoremsymbol{\ensuremath{\blacksquare}}
+%\theoremsymbol{\ensuremath{\square}}
+%\theoremstyle{nonumberplain}
+\newtheorem*{proof}{证明}
+\theoremstyle{plain}
+\theoremsymbol{}
+\qedsymbol{\ensuremath{\square}}
+%\theoremseparator{：}
+\newtheorem{assumption}{假设}[chapter]
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{proposition}{命题}[chapter]
+\newtheorem{lemma}{引理}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{axiom}{公理}[chapter]
+\newtheorem{corollary}{推论}[chapter]
+\newtheorem{example}{例}[chapter]
+\newtheorem{conjecture}{猜想}[chapter]
+
+\crefname{theorem}{定理}{定理}
+\crefname{assumption}{假设}{假设}
+\crefname{definition}{定义}{定义}
+\crefname{proposition}{命题}{命题}
+\crefname{lemma}{引理}{引理}
+\crefname{theorem}{定理}{定理}
+\crefname{axiom}{公理}{公理}
+\crefname{corollary}{推论}{推论}
+\crefname{example}{例}{例}
+\crefname{remark}{注释}{注释}
+\crefname{conjecture}{猜想}{猜想}
