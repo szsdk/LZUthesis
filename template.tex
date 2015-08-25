@@ -7,7 +7,7 @@
 \renewcommand{\bibfont}{\zihao{5}}
 
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
-\title{{兰州大学本科论文非官方 \LaTeX 模板}}
+\title{{兰州大学本科论文非官方 \LaTeX 模板English}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of Lanzhou University}}
 
 %package
@@ -15,6 +15,7 @@
 \usepackage[nameinlink]{cleveref}
 \usepackage{dirtree}
 \usepackage{siunitx}
+\usepackage{hologo}
 
 \newcommand{\filename}[1]{{\ttfamily #1}}
 \begin{document}
@@ -29,7 +30,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 }{hello, world}
 \tableofcontents
 \mainmatter
-\chapter{简介}
+\chapter{简介Introduction}
 这是作者在2015年8月借学习《\LaTeX 入门》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 \chapter{模板使用}
 \section{你好，世界}
@@ -63,7 +64,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \section{文件结构}
 \dirtree{%
     .1 ./.
-    .2 template.cls\DTcomment{主文件}.
+    .2 template.tex\DTcomment{主文件}.
     .2 LZU.cls\DTcomment{cls模板文件}.
     .2 LZU.cfg\DTcomment{配置文件}.
     .2 pic/.
@@ -74,13 +75,38 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .2 gbt7714\_2005\_n.bbx\DTcomment{参考文献格式配置}.
     .2 gbt7714\_2005\_n.cbx\DTcomment{参考文献格式配置}.
 }
+\section{参考文献}
+因为参考文献的格式是按照gbt标准的，所以需要额外的三个格式配置文件：\filename{gbt7714\_2005.def}、\filename{gbt7714\_2005\_n.bbx}和\filename{gbt7714\_2005\_n.cbx}。调用的方法为：
+\begin{minted}{latex}
+    \usepackage[backend=biber,gbtverbose=true,
+    bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
+    \addbibresource{ref.bib}
+    \renewcommand{\bibfont}{\zihao{5}}
+\end{minted}
+其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。在使用时，要注意\hologo{BibTeX}文件中要多输入一个文献类型标识的域
+\begin{minted}{latex}
+    usera
+\end{minted}
+例如《\citetitle{latextutorial}》\cite{latextutorial}在\filename{ref.bib}中为
+\begin{minted}{latex}
+@book{latextutorial,
+    author ={刘海洋},
+    year={2013},
+    month={6},
+    title={\LaTeX 入门},
+    publisher ={电子工业出版社},
+    address={北京},
+    usera={M}
+}
+\end{minted}
+
 \chapter{格式说明}
 毕业论文用 A4 标准纸($\SI{210}{mm}\times \SI{297}{mm}$)打印、印刷或复印，按论文顺序装订成册，论文顺序依次为:封面(包括扉页)、诚信责任书、关于毕业论文(设计)使用授权的申明、中文摘要、英文摘要、目录、论文正文、参考文献、附录、致谢、评语。论文页边距一般要求:上边距 \SI{3}{cm}、下边距\SI{2.54}{cm}，左右边距\SI{3.17}{cm}，页眉页脚\SI{2.0}{cm}。
 \section{封面}
 论文封面颜色:本科生毕业论文封面统一为白色。
 
 论文题目用三号字，宋体，加粗，其他信息用小三号字，宋体， 加粗，居中。
-\section{正文（Contents）}
+\section{正文Contents高一点？}
 \subsection{标题}
 \begin{itemize}
     \item 正文标题:一级标题为三号字，黑体，加粗，居中，单倍行距，段前 24 磅，段后 18 磅;

@@ -68,19 +68,19 @@
         \begin{minipage}{0.8\textwidth}
             \linespread{1}
             \centering
-            \zihao{3}\fontspec{Arial-Bold}\CJKfontspec{黑体}\bfseries \noindent\@title%
+            \zihao{3}\fontspec{Arial}\heiti\bfseries \noindent\@title%
         \end{minipage}
     \end{center}%
     \begin{center}%
         \linespread{1}
         \setlength{\parskip}{18pt}
-        \zihao{3}\CJKfontspec{黑体}\bfseries 摘\phantom{空}要%
+        \zihao{3}\heiti \bfseries 摘\phantom{空}要%
     \end{center}%
     {
         \setlength{\parskip}{0pt}
         \linespread{1.3889}
         \par #1\\\\%
-        {\CJKfontspec{宋体}\bfseries 关键词：} #2
+        {\songti \bfseries 关键词：} #2
     }
     \newpage
 }
@@ -123,7 +123,7 @@
 \newcommand{\Thanks}{%
     \chapter*{感\LZUspace\LZUspace 谢}
     \addcontentsline{toc}{chapter}{感\LZUspace\LZUspace 谢}
-    \zihao{-4}\CJKfontspec{仿宋}
+    \zihao{-4}\fangsong
 }
 
 % statement
@@ -163,7 +163,7 @@
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\CJKfontspec{宋体}\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
             \LZU@label@titleEn
@@ -259,8 +259,8 @@
     %\addcontentsline{论文成绩}
     \addcontentsline{toc}{chapter}{论文成绩}
     \begin{center}
-        {\zihao{3}\CJKfontspec{黑体} 论文成绩}
-\zihao{-3}\bfseries\CJKfontspec{宋体}
+        {\zihao{3}\heiti 论文成绩}
+        \zihao{-3}\bfseries\songti
 \begin{tabularx}{\textwidth}{|X|}
     \hline
     导师评语\\[11cm]
