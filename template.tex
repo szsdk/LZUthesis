@@ -7,17 +7,17 @@
 \renewcommand{\bibfont}{\zihao{5}}
 
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
-\title{{兰州大学本科论文非官方 \LaTeX 模板English}}
+\title{{兰州大学本科论文非官方 \LaTeX 模板}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of Lanzhou University}}
 
 %package
 \usepackage{minted} %代码格式
-\usepackage[nameinlink]{cleveref}
 \usepackage{dirtree}
 \usepackage{siunitx}
 \usepackage{hologo}
 
 \newcommand{\filename}[1]{{\ttfamily #1}}
+\newcommand{\package}[1]{{\sffamily #1}}
 \begin{document}
 \maketitle
 \makestatement
@@ -99,14 +99,71 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     usera={M}
 }
 \end{minted}
+\section{其他}
+\subsection{引用}
+在模板中已经调用了\package{cleveref}宏包。所以建议用\mintinline{latex}{\cref{***}}的方式引用，如
+\begin{minted}[breaklines,frame=single,linenos]{latex}
+引用\cref{ssub:figure}中的\cref{fig:chaos}
+\end{minted}
+引用\cref{ssub:figure}中的\cref{fig:chaos}
+\subsection{数学}
+模板中预定义的定理环境有
+\begin{itemize}
+    \item 假设：assumption
+    \item 定义：definition
+    \item 命题：proposition
+    \item 引理：lemma
+    \item 定理：theorem
+    \item 公理：axiom
+    \item 推论：corollary
+    \item 例：example
+    \item 猜想：conjecture
+\end{itemize}
+\subsubsection{一个例子}
+\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{theorem}[斯托克斯公式]
+    \begin{equation}
+        \int_M d\omega = \int_{\partial M} \omega
+    \end{equation}
+    \label{thm:stokes}
+\end{theorem}
+\begin{proof}
+    证明详见\citetitle{stokes}\cite{stokes}。
+    \qed
+\end{proof}
+在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
+\begin{corollary}[高斯公式]
+    \[\iiint_{\Omega}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dv=\iint_{\Sigma}P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy\]
+    \label{crl:gauss}
+\end{corollary}
+\end{minted}
+
+\begin{theorem}[斯托克斯公式]
+    \begin{equation}
+        \int_M d\omega = \int_{\partial M} \omega
+    \end{equation}
+    \label{thm:stokes}
+\end{theorem}
+\begin{proof}
+    证明详见\citetitle{stokes}\cite{stokes}。
+    \qed
+\end{proof}
+在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
+\begin{corollary}[高斯公式]
+    \[\iiint_{\Omega}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dv=\iint_{\Sigma}P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy\]
+    \label{crl:gauss}
+\end{corollary}
+
+
 
 \chapter{格式说明}
+\label{chp:format}
 毕业论文用 A4 标准纸($\SI{210}{mm}\times \SI{297}{mm}$)打印、印刷或复印，按论文顺序装订成册，论文顺序依次为:封面(包括扉页)、诚信责任书、关于毕业论文(设计)使用授权的申明、中文摘要、英文摘要、目录、论文正文、参考文献、附录、致谢、评语。论文页边距一般要求:上边距 \SI{3}{cm}、下边距\SI{2.54}{cm}，左右边距\SI{3.17}{cm}，页眉页脚\SI{2.0}{cm}。
 \section{封面}
 论文封面颜色:本科生毕业论文封面统一为白色。
 
 论文题目用三号字，宋体，加粗，其他信息用小三号字，宋体， 加粗，居中。
-\section{正文Contents高一点？}
+\section{正文}
 \subsection{标题}
 \begin{itemize}
     \item 正文标题:一级标题为三号字，黑体，加粗，居中，单倍行距，段前 24 磅，段后 18 磅;
@@ -116,7 +173,15 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 
 \subsection{图表}
 \subsubsection{图}
-图名置于图的下方，五号字，宋体，居中，单倍行距，段前 6 磅，段后 12 磅，图序与图名之间空 1 个汉字符。
+\label{ssub:figure}
+图名置于图的下方，五号字，宋体，居中，单倍行距，段前 6 磅，段后 12 磅，图序与图名之间空1个汉字符（如\cref{fig:chaos}所示）。
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{pic/chaos.png}
+    \caption{混沌}
+    \label{fig:chaos}
+\end{figure}
+
 \subsubsection{表}
 表名置于表的上方，五号字，宋体，居中，单倍行距，段 前 6 磅，段后 6 磅，表序与表名之间空 1 个汉字符。表下方的注释 为五号字，宋体，居左(英文用 Times New Roman 体 10.5 磅)，单倍行距。
 \subsubsection{注释}
