@@ -10,4 +10,5 @@ _minted-template
 *.toc
 *.tex.latexmain
 *.fdb_latexmk
+*.thm
 *~
