@@ -250,11 +250,13 @@
 %---------------------------
 \RequirePackage[unicode,psdextra]{hyperref} % Required for hyperlinks
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+%自动写入pdf信息
 \makeatletter
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
-    pdfauthor = {\@author}
+    pdfauthor = {\@author},
+    pdfsubject = {兰州大学本科毕业论文}
   }
 }
 \makeatother
