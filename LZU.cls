@@ -175,7 +175,7 @@
                 }%
             }%
             \LZU@label@author &
-            {\LZUunderline[320pt]{\LZU@value@author}}\\[0.48cm]
+            {\LZUunderline[320pt]{\@author}}\\[0.48cm]
             \LZU@label@advisor &
             {\LZUunderline[320pt]{\LZU@value@advisor}} \\[0.48cm]
             \LZU@label@college &
@@ -250,6 +250,14 @@
 %---------------------------
 \RequirePackage[unicode,psdextra]{hyperref} % Required for hyperlinks
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\makeatletter
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle = {\@title},
+    pdfauthor = {\@author}
+  }
+}
+\makeatother
 %\hypersetup{hidelinks,colorlinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 \RequirePackage[nameinlink]{cleveref}
 \renewcommand{\figureautorefname}{图}
