@@ -13,4 +13,4 @@ simplest:simplest.tex
 	xelatex simplest.tex
 
 clean:
-	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.bcf *.xml
+	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.bcf *.xml *~
