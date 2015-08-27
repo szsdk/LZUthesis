@@ -93,7 +93,8 @@
         \begin{minipage}{0.8\textwidth}
             \linespread{1}
             \centering
-            \zihao{3}\fontspec{Arial}\bfseries \noindent \the\entitle%
+            %\zihao{3}\fontspec{Arial}\bfseries \noindent \the\entitle%
+            \zihao{3}\fontspec{Arial}\bfseries \noindent \expandafter\MakeUppercase\expandafter{\the\entitle}%
         \end{minipage}
     \end{center}%
     \begin{center}%
