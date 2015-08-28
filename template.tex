@@ -19,6 +19,8 @@
 
 \newcommand{\filename}[1]{{\ttfamily #1}}
 \newcommand{\package}[1]{{\sffamily #1}}
+
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{headings}}{}{}
 \begin{document}
 \maketitle
 \makestatement

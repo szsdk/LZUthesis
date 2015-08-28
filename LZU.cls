@@ -23,13 +23,14 @@
 \RequirePackage{lastpage}  % Number of pages in the document
 \RequirePackage{etoolbox}
 \pagestyle{fancy}          % Enables the custom headers/footers
+
 \fancypagestyle{frontmatterstyle}{
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot{} % clear all footer fields
     \fancyfoot[LE,RO]{\thepage}
 }
-\appto\frontmatter{\pagestyle{frontmatterstyle}} 
+\appto\frontmatter{\pagestyle{frontmatterstyle}}
 
 \fancypagestyle{mainmatterstyle}{
     \fancyhf{}
@@ -41,14 +42,14 @@
     \renewcommand{\headrulewidth}{0.4pt}% % No header rule
 }
 
-\appto\mainmatter{\pagestyle{mainmatterstyle}} 
+\appto\mainmatter{\pagestyle{mainmatterstyle}}
 \fancypagestyle{plain}{
-    \thispagestyle{frontmatter}          % Enables the custom headers/footers
+    \thispagestyle{mainmatterstyle}
 }
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{frontmatterstyle}}}
 %\renewcommand{\headrulewidth}{1pt}% % No header rule
 %\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
 %\headrulecolor{black}
-
 
 %=======format
 %\renewcommand*\figurename{ \zihao{5}\CTEX@figurename}
@@ -220,7 +221,7 @@
 
     \begin{center}
         \begin{tabular*}{\textwidth}{rm{\fifth}lm{\fifth} cm{\fifth}rp{\fifth}lm{\fifth}}
-            论\hfill 文\hfill 作\hfill 者\hfill 签\hfill 名 ：&\LZUunderline[\fifth]{} & \hspace{\middlespace} & 日\hfill 期：&\LZUunderline[\fifth]{} 
+            论\hfill 文\hfill 作\hfill 者\hfill 签\hfill 名 ：&\LZUunderline[\fifth]{} & \hspace{\middlespace} & 日\hfill 期：&\LZUunderline[\fifth]{}
         \end{tabular*}
     \end{center}
 
@@ -245,7 +246,7 @@
     \begin{center}
         \begin{tabular*}{\textwidth}{rm{\fifth}lm{\fifth}cm{\fifth}rp{\fifth}lm{\fifth}}
             论\hfill 文\hfill 作\hfill 者\hfill 签\hfill 名 ：&\LZUunderline[\fifth]{} & \hspace{\middlespace} &  导\hfill 师\hfill 签\hfill 名 ：&\LZUunderline[\fifth]{} \\
-            日\hfill 期：&\LZUunderline[\fifth]{} & \hspace{\middlespace} & 日\hfill 期：&\LZUunderline[\fifth]{} 
+            日\hfill 期：&\LZUunderline[\fifth]{} & \hspace{\middlespace} & 日\hfill 期：&\LZUunderline[\fifth]{}
         \end{tabular*}
     \end{center}
     \clearpage
@@ -307,7 +308,7 @@
 \usepackage{enumitem}
 \setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
-\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}  
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 
 %math theorem
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
