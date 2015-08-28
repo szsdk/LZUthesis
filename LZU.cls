@@ -23,20 +23,27 @@
 \RequirePackage{lastpage}  % Number of pages in the document
 \RequirePackage{etoolbox}
 \pagestyle{fancy}          % Enables the custom headers/footers
-\fancyhf{}
-\lhead{\zihao{-5}兰州大学本科生毕业论文}%
-\rhead{\zihao{-5}\@title}
-% Footers
-\fancyfoot{} % clear all footer fields
-\fancyfoot[LE,RO]{\thepage}
-\fancypagestyle{plain}{
-    \thispagestyle{fancy}          % Enables the custom headers/footers
-}
-\fancypagestyle{nohead}{
-    \fancyhead{}
+\fancypagestyle{frontmatterstyle}{
+    \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot{} % clear all footer fields
     \fancyfoot[LE,RO]{\thepage}
+}
+\appto\frontmatter{\pagestyle{frontmatterstyle}} 
+
+\fancypagestyle{mainmatterstyle}{
+    \fancyhf{}
+    \lhead{\zihao{-5}兰州大学本科生毕业论文}%
+    \rhead{\zihao{-5}\@title}
+    % Footers
+    \fancyfoot{} % clear all footer fields
+    \fancyfoot[LE,RO]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}% % No header rule
+}
+
+\appto\mainmatter{\pagestyle{mainmatterstyle}} 
+\fancypagestyle{plain}{
+    \thispagestyle{frontmatter}          % Enables the custom headers/footers
 }
 %\renewcommand{\headrulewidth}{1pt}% % No header rule
 %\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
@@ -61,7 +68,7 @@
 %=======abstract
 \newcommand{\ZhAbstract}[2]{%
     \addcontentsline{toc}{chapter}{中文摘要}
-    \thispagestyle{nohead}
+    \thispagestyle{frontmatterstyle}
     %\thispagestyle{plain}
     \begin{center}%
         \setlength{\parskip}{24pt}
@@ -87,7 +94,7 @@
 
 \newcommand{\EnAbstract}[2]{%
     \addcontentsline{toc}{chapter}{英文摘要}
-    \thispagestyle{nohead}
+    \thispagestyle{frontmatterstyle}
     \begin{center}%
         \setlength{\parskip}{24pt}
         \begin{minipage}{0.8\textwidth}
