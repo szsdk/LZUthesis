@@ -3,7 +3,8 @@
 [2015/023/08  LZU document class]
 
 \LoadClass[chinese,fntef, cs4size, twoside]{ctexbook}
-\AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
+%\AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
+\AtEndOfPackage{\input{LZU.cfg}}
 
 %\RequirePackage{ctex}
 
@@ -16,7 +17,6 @@
 \RequirePackage{amsmath,amsfonts,amssymb,bm}
 \RequirePackage{graphicx}
 \RequirePackage[svgnames]{xcolor}
-
 
 %=======head and foot
 \RequirePackage{fancyhdr}  % Needed to define custom headers/footers
@@ -259,7 +259,6 @@
 \RequirePackage[unicode,psdextra]{hyperref} % Required for hyperlinks
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 %自动写入pdf信息
-\makeatletter
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
@@ -267,7 +266,6 @@
     pdfsubject = {兰州大学本科毕业论文}
   }
 }
-\makeatother
 %\hypersetup{hidelinks,colorlinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 \RequirePackage[nameinlink]{cleveref}
 \renewcommand{\figureautorefname}{图}
