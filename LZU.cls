@@ -313,7 +313,7 @@
 \theorembodyfont{\rmfamily\songti}
 \theoremheaderfont{\rmfamily\heiti}
 %\theoremsymbol{\ensuremath{\blacksquare}}
-%\theoremsymbol{\ensuremath{\square}}
+\theoremsymbol{\ensuremath{\square}}
 %\theoremstyle{nonumberplain}
 \newtheorem*{proof}{证明}
 \theoremstyle{plain}
