@@ -138,7 +138,7 @@
 % statement
 \RequirePackage{array}
 \def\LZU@underline[#1]#2{%
-  \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
+\CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\LZUunderline{\@ifnextchar[\LZU@underline\CTEXunderline}
 
 %\RequirePackage[thinlines]{easytable}
@@ -154,19 +154,19 @@
     \thispagestyle{empty}
     \begin{center}
 
-        % Requires \usepackage{graphicx}
+    % Requires \usepackage{graphicx}
         \includegraphics[width=6cm]{pic/lzu.eps}\\
 
         \vspace{\stretch{1}}
 
         {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis}
         \vskip \stretch{1.5}
-        %\vspace{\stretch{1}}
+    %\vspace{\stretch{1}}
         \zihao{-3}
         \def\tabcolsep{6pt}
-        %\begin{TAB}(r,0.5cm,1.25cm){ll}{ccccccc}
+    %\begin{TAB}(r,0.5cm,1.25cm){ll}{ccccccc}
         \expandarg
-            \newcounter{ct}
+        \newcounter{ct}
         \begin{tabular}{ll}
             \LZU@label@titleZh
             \forloop{ct}{1}{\value{ct}<6}{%
@@ -193,7 +193,7 @@
             \LZU@label@grade&
             {\LZUunderline[320pt]{\LZU@value@grade}}\\[0.48cm]
         \end{tabular}
-        %\vspace{\stretch{1}}
+    %\vspace{\stretch{1}}
         \vskip \stretch{1}
         {\CJKfontspec{微软雅黑}\ziju{0.3}\zihao{-4}\LZU@label@schooladdress }
     \end{center}
@@ -205,12 +205,12 @@
     \newcommand\middlespace{0.08\textwidth}
 
     \thispagestyle{empty}
-    %\cleardoublepage
+%\cleardoublepage
     \baselineskip 22.5pt
     \parskip 0pt
 
     \begin{center}
-        {\bfseries\zihao{3}{诚~~信~~责~~任~~书}}
+        {\bfseries\songti\zihao{3}{诚~~信~~责~~任~~书}}
     \end{center}
 
     本人郑重声明：本人所呈交的学位论文，是在导师的指导下独立进行研究所取得的成果。毕业论文（设计）中凡引用他人已经发表或未发表的成果、数据、观点等,均已明确注明出处。除文中已经注明引用的内容外,不包含任何其他个人或集体已经发表或在网上发表的论文。
@@ -228,7 +228,7 @@
     \vskip2.0cm
 
     \begin{center}
-        {\bfseries\zihao{3}{关于毕业论文（设计）使用授权的声明}}
+        {\bfseries\songti\zihao{3}{关于毕业论文（设计）使用授权的声明}}
     \end{center}
 
     本人在导师指导下所完成的论文及相关的职务作品，知识产权归属兰州大学。本人完全了解兰州大学有关保存、使用毕业论文的规定，同意学校保存或向国家有关部门或机构送交论文的纸质版和电子版，允许论文被查阅和借阅；本人授权兰州大学可以将本毕业论文的全部或部分内容编入有关数据库进行检索，可以采用任何复制手段保存和汇编本毕业论文。本人离校后发表、使用毕业论文或与该论文直接相关的学术论文或成果时，第一署名单位仍然为兰州大学。
@@ -239,7 +239,7 @@
 
     $\square$ 不宜公开，已在学位办公室办理保密申请，解密后适用本授权书。
 
-    %（请在以上选项内选择其中一项打“$\surd$”）
+%（请在以上选项内选择其中一项打“$\surd$”）
     （请在以上选项内选择其中一项打“$\checkmark$”）
 
     \vskip1cm
@@ -260,11 +260,11 @@
 \hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 %自动写入pdf信息
 \AtBeginDocument{
-  \hypersetup{
-    pdftitle = {\@title},
-    pdfauthor = {\@author},
-    pdfsubject = {兰州大学本科毕业论文}
-  }
+    \hypersetup{
+        pdftitle = {\@title},
+        pdfauthor = {\@author},
+        pdfsubject = {兰州大学本科毕业论文}
+    }
 }
 %\hypersetup{hidelinks,colorlinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 \RequirePackage[nameinlink]{cleveref}
@@ -280,25 +280,25 @@
 %grade
 \RequirePackage{tabularx}
 \newcommand{\Grade}{
-    %\chapter*{论文成绩}
-    %\addcontentsline{论文成绩}
+%\chapter*{论文成绩}
+%\addcontentsline{论文成绩}
     \addcontentsline{toc}{chapter}{论文成绩}
     \begin{center}
         {\zihao{3}\heiti 论文成绩}
         \zihao{-3}\bfseries\songti
-\begin{tabularx}{\textwidth}{|X|}
-    \hline
-    导师评语\\[11cm]
-    建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
-    \hline
-    答辩小组意见\vskip \stretch{1}\\[2cm]
-    \hfill 答辩委员会负责人(签字)\underline{\hspace{80pt}}\\
-    \hline
-    \vskip \stretch{1}\\[2cm]
-    成绩\underline{\hspace{80pt}}\hfill 学院（盖章）\underline{\hspace{80pt}}\\
-    \hfill{\zihao{-4}年\hspace{20pt}月\hspace{20pt}日}\\
-    \hline
-\end{tabularx}
+        \begin{tabularx}{\textwidth}{|X|}
+            \hline
+            导师评语\\[11cm]
+            建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
+            \hline
+            答辩小组意见\vskip \stretch{1}\\[2cm]
+            \hfill 答辩委员会负责人(签字)\underline{\hspace{80pt}}\\
+            \hline
+            \vskip \stretch{1}\\[2cm]
+            成绩\underline{\hspace{80pt}}\hfill 学院（盖章）\underline{\hspace{80pt}}\\
+            \hfill{\zihao{-4}年\hspace{20pt}月\hspace{20pt}日}\\
+            \hline
+        \end{tabularx}
     \end{center}
 }
 
@@ -312,7 +312,7 @@
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \theorembodyfont{\rmfamily\songti}
 \theoremheaderfont{\rmfamily\heiti}
- %\theoremsymbol{\ensuremath{\blacksquare}}
+%\theoremsymbol{\ensuremath{\blacksquare}}
 %\theoremsymbol{\ensuremath{\square}}
 %\theoremstyle{nonumberplain}
 \newtheorem*{proof}{证明}
