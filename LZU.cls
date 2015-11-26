@@ -11,7 +11,7 @@
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
-\RequirePackage{mathptmx}
+%\RequirePackage{mathptmx}
 
 %=======package
 \RequirePackage{amsmath,amsfonts,amssymb,bm}
