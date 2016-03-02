@@ -11,7 +11,7 @@
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
-\RequirePackage{mathptmx}
+%\RequirePackage{mathptmx}
 
 %=======package
 \RequirePackage{amsmath,amsfonts,amssymb,bm}
@@ -319,7 +319,7 @@
 \theorembodyfont{\rmfamily\songti}
 \theoremheaderfont{\rmfamily\heiti}
 %\theoremsymbol{\ensuremath{\blacksquare}}
-%\theoremsymbol{\ensuremath{\square}}
+\theoremsymbol{\ensuremath{\square}}
 %\theoremstyle{nonumberplain}
 \newtheorem*{proof}{证明}
 \theoremstyle{plain}
