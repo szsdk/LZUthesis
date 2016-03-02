@@ -64,6 +64,12 @@
 \RequirePackage{perpage} %the perpage package
 \MakePerPage{footnote} %the perpage package command
 
+%=======information
+\newtoks\advisor
+\newtoks\college
+\newtoks\major
+\newtoks\grade
+
 %=======english title
 \newtoks\entitle
 %=======abstract
@@ -185,13 +191,13 @@
             \LZU@label@author &
             {\LZUunderline[320pt]{\@author}}\\[0.48cm]
             \LZU@label@advisor &
-            {\LZUunderline[320pt]{\LZU@value@advisor}} \\[0.48cm]
+            {\LZUunderline[320pt]{\the\advisor}} \\[0.48cm]
             \LZU@label@college &
-            {\LZUunderline[320pt]{\LZU@value@college}} \\[0.48cm]
+            {\LZUunderline[320pt]{\the\college}} \\[0.48cm]
             \LZU@label@major &
-            {\LZUunderline[320pt]{\LZU@value@major}}\\[0.48cm]
+            {\LZUunderline[320pt]{\the\major}}\\[0.48cm]
             \LZU@label@grade&
-            {\LZUunderline[320pt]{\LZU@value@grade}}\\[0.48cm]
+            {\LZUunderline[320pt]{\the\grade}}\\[0.48cm]
         \end{tabular}
     %\vspace{\stretch{1}}
         \vskip \stretch{1}
