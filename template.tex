@@ -42,7 +42,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 这是作者在2015年8月借学习《\citetitle{latextutorial}》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 \chapter{模板使用}
 \section{你好，世界}
-\subsection{一个最简单的例子}
+%\subsection{一个最简单的例子}
 首先，我们给出使用本模板的一个最简单的例子，见代码清单\ref{lst:simplest}。
 
 \begingroup
@@ -63,12 +63,13 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{minted}
 或者在Windows系统中，运行\filename{compile.bat}以自动完成上述过程。{\it 注意此模板是在TeXLive 2015环境下编写调试的，所以在更低的版本中可能会出现细节上的不同。}
 
-\subsection{信息配置}
-如果成功编译，可以看到在封面页，大部分信息（除了中英文题目，作者）在主文件\filename{simplest.tex}中并没有出现，如导师姓名，学生所属学院等。这些信息的修改在\filename{LZU.cfg}中形如
-\begin{minted}{latex}
-    \def\LZU@value@***{***}
-\end{minted}
-这样的行。
+%\subsection{信息配置}
+%如果成功编译，可以看到在封面页，大部分信息（除了中英文题目，作者）在主文件\filename{simplest.tex}中并没有出现，如导师姓名，学生所属学院等。这些信息的修改在\filename{LZU.cfg}中形如
+%\begin{minted}{latex}
+    %\def\LZU@value@***{***}
+%\end{minted}
+%这样的行。
+
 \section{文件结构}
 \dirtree{%
     .1 ./.
@@ -208,6 +209,8 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
 图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图\footnote{注释}
+\section{Q \& A}
+\subsection{jj}
 \Thanks
 感谢戴维同学的测试。
 \Grade
