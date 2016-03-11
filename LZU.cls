@@ -131,6 +131,9 @@
 
 %=======appendix
 \newcommand{\Appendix}{%
+    %\setcounter{chapter}{16}% Equivalent to "letter P"
+    \setcounter{section}{0}
+    \renewcommand{\thechapter}{A}%
     \chapter*{附\LZUspace\LZUspace 录}
     \addcontentsline{toc}{chapter}{附\LZUspace\LZUspace 录}
     \zihao{5}
