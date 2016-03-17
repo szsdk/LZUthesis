@@ -21,6 +21,9 @@
 \usepackage{dirtree}
 \usepackage{siunitx}
 \usepackage{hologo}
+\usepackage{manfnt}
+
+\newenvironment{note}{\par\itshape\noindent{\makebox[-5pt][r]{\scriptsize\color{red!90}\textdbend\quad}}}{\par}
 
 \newcommand{\filename}[1]{{\ttfamily #1}}
 \newcommand{\package}[1]{{\sffamily #1}}
@@ -61,7 +64,10 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \begin{minted}{bash}
     make simplest
 \end{minted}
-或者在Windows系统中，运行\filename{compile.bat}以自动完成上述过程。{\it 注意此模板是在TeXLive 2015环境下编写调试的，所以在更低的版本中可能会出现细节上的不同。}
+或者在Windows系统中，运行\filename{compile.bat}以自动完成上述过程。
+\begin{note}
+此模板是在TeXLive 2015环境下编写调试的，所以在更低的版本中可能会出现细节上的不同。
+\end{note}
 
 %\subsection{信息配置}
 %如果成功编译，可以看到在封面页，大部分信息（除了中英文题目，作者）在主文件\filename{simplest.tex}中并没有出现，如导师姓名，学生所属学院等。这些信息的修改在\filename{LZU.cfg}中形如
@@ -92,10 +98,8 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \addbibresource{ref.bib}
     \renewcommand{\bibfont}{\zihao{5}}
 \end{minted}
-其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。在使用时，要注意\hologo{BibTeX}文件中要多输入一个文献类型标识的域
-\begin{minted}{bibtex}
-    usera
-\end{minted}
+其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
+
 例如《\citetitle{latextutorial}》\cite{latextutorial}在\filename{ref.bib}中为
 \begin{minted}{bibtex}
 @book{latextutorial,
@@ -108,6 +112,9 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     usera={M}
 }
 \end{minted}
+\begin{note}
+    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域。
+\end{note}
 \section{其他}
 \subsection{引用}
 在模板中已经调用了\package{cleveref}宏包。所以建议用\mintinline{latex}{\cref{***}}的方式引用，如
