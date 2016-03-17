@@ -43,6 +43,11 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \mainmatter
 \chapter{简介Introduction}
 这是作者在2015年8月借学习《\citetitle{latextutorial}》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
+\begin{note}
+    在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
+\end{note}
+本文档最新编译时间：\today。
+
 \chapter{模板使用}
 \section{你好，世界}
 %\subsection{一个最简单的例子}
@@ -69,13 +74,6 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 此模板是在TeXLive 2015环境下编写调试的，所以在更低的版本中可能会出现细节上的不同。
 \end{note}
 
-%\subsection{信息配置}
-%如果成功编译，可以看到在封面页，大部分信息（除了中英文题目，作者）在主文件\filename{simplest.tex}中并没有出现，如导师姓名，学生所属学院等。这些信息的修改在\filename{LZU.cfg}中形如
-%\begin{minted}{latex}
-    %\def\LZU@value@***{***}
-%\end{minted}
-%这样的行。
-
 \section{文件结构}
 \dirtree{%
     .1 ./.
@@ -91,7 +89,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .2 gbt7714\_2005\_n.cbx\DTcomment{参考文献格式配置}.
 }
 \section{参考文献}
-因为参考文献的格式是按照gbt标准的，所以需要额外的三个格式配置文件：\filename{gbt7714\_2005.def}、\filename{gbt7714\_2005\_n.bbx}和\filename{gbt7714\_2005\_n.cbx}。调用的方法为：
+参考文献的格式是按照GB/T 7714-2005标准的。需要三个额外的格式配置文件：\filename{gbt7714\_2005.def}、\filename{gbt7714\_2005\_n.bbx}和\filename{gbt7714\_2005\_n.cbx}。调用的方法为在导言区加入：
 \begin{minted}{latex}
     \usepackage[backend=biber,gbtverbose=true,
     bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
