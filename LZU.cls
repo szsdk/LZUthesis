@@ -43,6 +43,7 @@
 }
 
 \appto\mainmatter{\pagestyle{mainmatterstyle}}
+\appto\mainmatter{\linespread{1.3889}\selectfont}
 \fancypagestyle{plain}{
     \thispagestyle{mainmatterstyle}
 }
@@ -87,15 +88,15 @@
     \end{center}%
     \begin{center}%
         \linespread{1}
-        \setlength{\parskip}{18pt}
+        \setlength{\parskip}{24pt}
         \zihao{3}\heiti \bfseries 摘\phantom{空}要%
     \end{center}%
-    {
-        \setlength{\parskip}{0pt}
-        \linespread{1.3889}
-        \par #1\\\\%
-        {\songti \bfseries 关键词：} #2
-    }
+    \linespread{1.3889}
+    \selectfont
+    \setlength{\parskip}{0pt}
+    \vspace{10pt}
+    \par #1\\\\%
+    {\songti \bfseries 关键词：} #2
     \newpage
 }
 
@@ -106,23 +107,24 @@
         \setlength{\parskip}{24pt}
         \begin{minipage}{0.8\textwidth}
             \linespread{1}
+            \selectfont
             \centering
-            %\zihao{3}\fontspec{Arial}\bfseries \noindent \the\entitle%
             \zihao{3}\fontspec{Arial}\bfseries \noindent \expandafter\MakeUppercase\expandafter{\the\entitle}%
         \end{minipage}
     \end{center}%
     \begin{center}%
         \linespread{1}
-        \setlength{\parskip}{18pt}
+        \selectfont
+        \setlength{\parskip}{24pt}
         \zihao{3}\fontspec{Arial}\bfseries Abstract%
     \end{center}%
-    {
-        \setlength{\parskip}{0pt}
-        \zihao{5}
-        \linespread{1.3889}
-        \par #1\\\\%
-        {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2
-    }
+    \setlength{\parskip}{0pt}
+    \zihao{5}
+    \linespread{1.27}
+    \selectfont
+    \vspace{11pt}
+    \par #1\\\\%
+    {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2
 }
 %=======space
 %\newcommand\LZUspace{\protect\CTEX@spaceChar}
@@ -139,8 +141,8 @@
     \zihao{5}
 }
 \newcommand{\Thanks}{%
-    \chapter*{感\LZUspace\LZUspace 谢}
-    \addcontentsline{toc}{chapter}{感\LZUspace\LZUspace 谢}
+    \chapter*{致\LZUspace\LZUspace 谢}
+    \addcontentsline{toc}{chapter}{致\LZUspace\LZUspace 谢}
     \zihao{-4}\fangsong
 }
 
