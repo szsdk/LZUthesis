@@ -23,6 +23,11 @@
 \usepackage{hologo}
 \usepackage{manfnt}
 
+%math package
+\usepackage{unicode-math}
+\unimathsetup{bold-style=ISO}
+\newcommand{\bvec}[1]{\symbf{#1}}
+
 \newenvironment{note}{\par\itshape\noindent{\makebox[-5pt][r]{\scriptsize\color{red!90}\textdbend\quad}}}{\par}
 
 \newcommand{\filename}[1]{{\ttfamily #1}}
@@ -154,7 +159,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 
 \begin{theorem}[斯托克斯公式]
     \begin{equation}
-        \int_M d\omega = \int_{\partial M} \omega
+        \int_M d\omega\bvec{jj} = \int_{\partial M} \omega
     \end{equation}
     \label{thm:stokes}
 \end{theorem}
