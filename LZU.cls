@@ -11,7 +11,7 @@
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
-%\RequirePackage{mathptmx}
+\RequirePackage{mathptmx}
 
 %=======package
 \RequirePackage{amsmath,amsfonts,amssymb,bm}
@@ -57,10 +57,15 @@
 %\renewcommand*\tablename{ \zihao{5}\CTEX@tablename }
 \usepackage[font=small]{caption}
 
-\RequirePackage{titletoc}
-\dottedcontents{chapter}[3.5\ccwd]{\zihao{4}}{4\ccwd}{100\ccwd}
-\dottedcontents{chapter}[3.5\ccwd]{\zihao{4}}{4\ccwd}{0.75pc}
-
+\RequirePackage[titles]{tocloft}
+\renewcommand\cftchapdotsep{\cftdotsep}
+\renewcommand\cftchapfont{\zihao{4}}
+\renewcommand\cftsecfont{\zihao{-4}}
+\renewcommand\cftsubsecfont{\zihao{-4}}
+%\RequirePackage{titletoc}
+%\dottedcontents{chapter}[2cm]{\zihao{4}}{4\ccwd}{0.75pc}
+%\dottedcontents{section}[2cm]{\zihao{-4}}{2\ccwd}{0.75pc}
+%\dottedcontents{subsection}[2cm+3\ccwd]{\zihao{-4}}{3\ccwd}{0.75pc}
 %=======footnote
 \RequirePackage{perpage} %the perpage package
 \MakePerPage{footnote} %the perpage package command
@@ -221,10 +226,10 @@
     \parskip 0pt
 
     \begin{center}
-        {\bfseries\songti\zihao{3}{诚~~信~~责~~任~~书}}
+        {\bfseries\songti\zihao{3}{诚信责任书}}
     \end{center}
 
-    本人郑重声明：本人所呈交的学位论文，是在导师的指导下独立进行研究所取得的成果。毕业论文（设计）中凡引用他人已经发表或未发表的成果、数据、观点等,均已明确注明出处。除文中已经注明引用的内容外,不包含任何其他个人或集体已经发表或在网上发表的论文。
+    本人郑重声明:本人所呈交的学位论文,是在导师的指导下独立进行研究所取得的成果。毕业论文(设计)中凡引用他人已经发表或未发表的成果、数据、观点等, 均已明确注明出处。除文中已经注明引用的内容外, 不包含任何其他个人或集体已经发表或在网上发表的论文。
 
     本声明的法律责任由本人承担。
 
@@ -291,7 +296,7 @@
 %grade
 \RequirePackage{tabularx}
 \newcommand{\Grade}{
-%\chapter*{论文成绩}
+    %\chapter*{论文成绩}
 %\addcontentsline{论文成绩}
     \addcontentsline{toc}{chapter}{论文成绩}
     \begin{center}
