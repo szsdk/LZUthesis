@@ -26,6 +26,7 @@
 %math package
 \usepackage{unicode-math}
 \unimathsetup{bold-style=ISO}
+%\setmathfont{xits-math.otf}
 \newcommand{\bvec}[1]{\symbf{#1}}
 
 \newenvironment{note}{\par\itshape\noindent{\makebox[-5pt][r]{\scriptsize\color{red!90}\textdbend\quad}}}{\par}
@@ -159,7 +160,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 
 \begin{theorem}[斯托克斯公式]
     \begin{equation}
-        \int_M d\omega\bvec{jj} = \int_{\partial M} \omega
+        \int_M d\omega = \int_{\partial M} \omega
     \end{equation}
     \label{thm:stokes}
 \end{theorem}
@@ -219,9 +220,13 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
-图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图图\footnote{注释}
-\section{Q \& A}
-\subsection{jj}
+此处会进行一些输出测试。\footnote{脚注测试}
+\section{数学测试}
+\begin{itemize}
+    \item $\hbar$
+    \item $\bvec{a}$
+\end{itemize}
+
 \Thanks
 感谢戴维同学的测试。
 \Grade
