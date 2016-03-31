@@ -15,7 +15,7 @@
 \setmainfont{Times New Roman}
 
 %=======package
-\RequirePackage{amsmath,amsfonts,amssymb,bm}
+\RequirePackage{amsmath,amsfonts,amssymb}
 \RequirePackage{graphicx}
 \RequirePackage[svgnames]{xcolor}
 
