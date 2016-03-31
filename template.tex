@@ -24,9 +24,9 @@
 \usepackage{manfnt}
 
 %math package
-\usepackage{unicode-math}
+\usepackage[math-style=TeX]{unicode-math}
 \unimathsetup{bold-style=ISO}
-%\setmathfont{xits-math.otf}
+\setmathfont{xits-math.otf}
 \newcommand{\bvec}[1]{\symbf{#1}}
 
 \newenvironment{note}{\par\itshape\noindent{\makebox[-5pt][r]{\scriptsize\color{red!90}\textdbend\quad}}}{\par}
@@ -225,6 +225,8 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \begin{itemize}
     \item $\hbar$
     \item $\bvec{a}$
+    \item $\int$
+    \item \[\fint\intbar\]
 \end{itemize}
 
 \Thanks
