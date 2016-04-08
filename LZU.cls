@@ -125,13 +125,12 @@
         \zihao{3}\fontspec{Arial}\bfseries Abstract%
     \end{center}%
     \setlength{\parskip}{0pt}
-    \zihao{5}
+    {\zihao{5}
     \linespread{1.27}
     \selectfont
     \vspace{11pt}
     \par #1\\\\%
-    {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2
-    \zihao{-4}
+    {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2}
 }
 %=======space
 %\newcommand\LZUspace{\protect\CTEX@spaceChar}
