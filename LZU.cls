@@ -131,6 +131,7 @@
     \vspace{11pt}
     \par #1\\\\%
     {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2
+    \zihao{-4}
 }
 %=======space
 %\newcommand\LZUspace{\protect\CTEX@spaceChar}
