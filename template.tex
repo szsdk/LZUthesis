@@ -233,6 +233,12 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{question}
 \begin{answer}
     本模板用了\package{enumitem}来重新定义了enumerate环境item之间的距离，使之更符合中文习惯。需要\package{enumerate}宏包来实现的功能\package{enumitem}基本都能实现。如
+\begin{minted}{latex}
+\begin{enumerate}[label={\roman*.}]
+    \item 把编号变成罗马数字。
+    \item \package{enumitem}的具体使用请参见该宏包的帮助文档。
+\end{enumerate}
+\end{minted}
     \begin{enumerate}[label={\roman*.}]
         \item 把编号变成罗马数字。
         \item \package{enumitem}的具体使用请参见该宏包的帮助文档。

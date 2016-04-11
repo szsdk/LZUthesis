@@ -81,6 +81,7 @@
 \newtoks\entitle
 %=======abstract
 \newcommand{\ZhAbstract}[2]{%
+    \phantomsection
     \addcontentsline{toc}{chapter}{中文摘要}
     \thispagestyle{frontmatterstyle}
     %\thispagestyle{plain}
@@ -107,6 +108,7 @@
 }
 
 \newcommand{\EnAbstract}[2]{%
+    \phantomsection
     \addcontentsline{toc}{chapter}{英文摘要}
     \thispagestyle{frontmatterstyle}
     \begin{center}%
@@ -296,27 +298,30 @@
 
 %grade
 \RequirePackage{tabularx}
+\RequirePackage{afterpage}
 \newcommand{\Grade}{
     %\chapter*{论文成绩}
 %\addcontentsline{论文成绩}
-    \addcontentsline{toc}{chapter}{论文成绩}
-    \begin{center}
-        {\zihao{3}\heiti 论文成绩}
-        \zihao{-3}\bfseries\songti
-        \begin{tabularx}{\textwidth}{|X|}
-            \hline
-            导师评语\\[11cm]
-            建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
-            \hline
-            答辩小组意见\vskip \stretch{1}\\[2cm]
-            \hfill 答辩委员会负责人(签字)\underline{\hspace{80pt}}\\
-            \hline
-            \vskip \stretch{1}\\[2cm]
-            成绩\underline{\hspace{80pt}}\hfill 学院（盖章）\underline{\hspace{80pt}}\\
-            \hfill{\zihao{-4}年\hspace{20pt}月\hspace{20pt}日}\\
-            \hline
-        \end{tabularx}
-    \end{center}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{论文成绩}
+\begin{center}
+    \zihao{-3}\bfseries\songti
+    \begin{tabularx}{\textwidth}{|X|}
+        \multicolumn{1}{c}{\zihao{3}\heiti 论文成绩}\\
+        \hline
+        导师评语\\[10.0cm]
+        建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
+        \hline
+        答辩小组意见\vskip \stretch{1}\\[2cm]
+        \hfill 答辩委员会负责人(签字)\underline{\hspace{80pt}}\\
+        \hline
+        \vskip \stretch{1}\\[2cm]
+        成绩\underline{\hspace{80pt}}\hfill 学院（盖章）\underline{\hspace{80pt}}\\
+        \hfill{\zihao{-4}年\hspace{20pt}月\hspace{20pt}日}\\
+        \hline
+    \end{tabularx}
+\end{center}
 }
 
 %item style
