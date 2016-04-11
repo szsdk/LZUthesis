@@ -34,7 +34,9 @@
 \newcommand{\filename}[1]{{\ttfamily #1}}
 \newcommand{\package}[1]{{\sffamily #1}}
 
-\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{headings}}{}{}
+\newtheorem{question}{Q}
+\newtheorem*{answer}{A}
+
 \begin{document}
 \maketitle
 \makestatement
@@ -225,16 +227,25 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
-此处会进行一些输出测试。\footnote{脚注测试}
+\section{Q\&A}
+\begin{question}
+    引用\package{enumerate}宏包之后无法编译通过。
+\end{question}
+\begin{answer}
+    本模板用了\package{enumitem}来重新定义了enumerate环境item之间的距离，使之更符合中文习惯。需要\package{enumerate}宏包来实现的功能\package{enumitem}基本都能实现。如
+    \begin{enumerate}[label={\roman*.}]
+        \item 把编号变成罗马数字。
+        \item \package{enumitem}的具体使用请参见该宏包的帮助文档。
+    \end{enumerate}
+\end{answer}
 \section{数学测试}
+此处会进行一些输出测试。\footnote{脚注测试}
 \begin{itemize}
     \item $\hbar$
     \item $\bvec{a}$
     \item $\int$
     \item \[\fint\intbar\]
 \end{itemize}
-
-
 \Thanks
 感谢戴维同学的测试。
 \Grade
