@@ -2,7 +2,7 @@
 \ProvidesClass{LZU}
 [2015/023/08  LZU document class]
 
-\LoadClass[chinese,fntef, cs4size, twoside]{ctexbook}
+\LoadClass[chinese,a4paper,fntef, cs4size, twoside]{ctexbook}
 %\AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
 \AtEndOfPackage{\input{LZU.cfg}}
 
@@ -312,7 +312,7 @@
     \begin{tabularx}{\textwidth}{|X|}
         \multicolumn{1}{c}{\zihao{3}\heiti 论文成绩}\\
         \hline
-        导师评语\\[10.0cm]
+        导师评语\\[11.0cm]
         建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
         \hline
         答辩小组意见\vskip \stretch{1}\\[2cm]
