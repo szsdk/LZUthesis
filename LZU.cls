@@ -176,46 +176,48 @@
     % Requires \usepackage{graphicx}
         \includegraphics[width=6cm]{pic/lzu.eps}\\
 
-        \vspace{\stretch{1}}
-
+        %\vspace{\stretch{0.4}}
+        \vspace*{58pt}
         {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis\\}
-        \vspace{10pt}
+        \vspace{21.8pt}
         {\zihao{4}\CJKfontspec{微软雅黑}（本\ 科\ 生）}
-        \vskip \stretch{1.5}
+        \par
     %\vspace{\stretch{1}}
         \zihao{-3}
         \def\tabcolsep{6pt}
     %\begin{TAB}(r,0.5cm,1.25cm){ll}{ccccccc}
         \expandarg
         \newcounter{ct}
+        \vspace*{50pt}
         \begin{tabular}{ll}
             \bfseries \LZU@label@titleZh
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[258pt]{\bfseries\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
             \bfseries \LZU@label@titleEn
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.48cm]%
+                    & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[258pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
             {\bfseries \LZU@label@author} &
-            {\LZUunderline[320pt]{\bfseries \@author}}\\[0.48cm]
+            {\LZUunderline[258pt]{\bfseries \@author}}\\[0.40cm]
             {\bfseries \LZU@label@advisor} &
-            {\LZUunderline[320pt]{\bfseries \the\advisor}} \\[0.48cm]
+            {\LZUunderline[258pt]{\bfseries \the\advisor}} \\[0.40cm]
             {\bfseries \LZU@label@college} &
-            {\LZUunderline[320pt]{\bfseries \the\college}} \\[0.48cm]
+            {\LZUunderline[258pt]{\bfseries \the\college}} \\[0.40cm]
             {\bfseries \LZU@label@major} &
-            {\LZUunderline[320pt]{\bfseries \the\major}}\\[0.48cm]
+            {\LZUunderline[258pt]{\bfseries \the\major}}\\[0.40cm]
             {\bfseries \LZU@label@grade} &
-            {\LZUunderline[320pt]{\bfseries \the\grade}}\\[0.48cm]
+            {\LZUunderline[258pt]{\bfseries \the\grade}}\\[0.40cm]
         \end{tabular}
     %\vspace{\stretch{1}}
-        \vskip \stretch{1}
+    \par
+        \vspace{70pt}
         {\CJKfontspec{微软雅黑}\ziju{0.3}\zihao{-4}\LZU@label@schooladdress }
     \end{center}
     \clearpage
