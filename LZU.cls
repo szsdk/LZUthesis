@@ -178,7 +178,9 @@
 
         \vspace{\stretch{1}}
 
-        {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis}
+        {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis\\}
+        \vspace{10pt}
+        {\zihao{4}\CJKfontspec{微软雅黑}（本\ 科\ 生）}
         \vskip \stretch{1.5}
     %\vspace{\stretch{1}}
         \zihao{-3}
@@ -187,30 +189,30 @@
         \expandarg
         \newcounter{ct}
         \begin{tabular}{ll}
-            \LZU@label@titleZh
+            \bfseries \LZU@label@titleZh
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
                     & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\bfseries\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
-            \LZU@label@titleEn
+            \bfseries \LZU@label@titleEn
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
                     & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[320pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.48cm]%
                 }%
             }%
-            \LZU@label@author &
-            {\LZUunderline[320pt]{\@author}}\\[0.48cm]
-            \LZU@label@advisor &
-            {\LZUunderline[320pt]{\the\advisor}} \\[0.48cm]
-            \LZU@label@college &
-            {\LZUunderline[320pt]{\the\college}} \\[0.48cm]
-            \LZU@label@major &
-            {\LZUunderline[320pt]{\the\major}}\\[0.48cm]
-            \LZU@label@grade&
-            {\LZUunderline[320pt]{\the\grade}}\\[0.48cm]
+            {\bfseries \LZU@label@author} &
+            {\LZUunderline[320pt]{\bfseries \@author}}\\[0.48cm]
+            {\bfseries \LZU@label@advisor} &
+            {\LZUunderline[320pt]{\bfseries \the\advisor}} \\[0.48cm]
+            {\bfseries \LZU@label@college} &
+            {\LZUunderline[320pt]{\bfseries \the\college}} \\[0.48cm]
+            {\bfseries \LZU@label@major} &
+            {\LZUunderline[320pt]{\bfseries \the\major}}\\[0.48cm]
+            {\bfseries \LZU@label@grade} &
+            {\LZUunderline[320pt]{\bfseries \the\grade}}\\[0.48cm]
         \end{tabular}
     %\vspace{\stretch{1}}
         \vskip \stretch{1}
