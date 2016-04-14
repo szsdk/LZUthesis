@@ -312,15 +312,15 @@
 \begin{center}
     \zihao{-3}\bfseries\songti
     \begin{tabularx}{\textwidth}{|X|}
-        \multicolumn{1}{c}{\zihao{3}\heiti 论文成绩}\\
+        \multicolumn{1}{c}{\zihao{3}\heiti\mdseries 论文（设计）成绩}\\
         \hline
         导师评语\\[11.0cm]
         建议成绩\underline{\hspace{80pt}}\hfill 指导教师（签字）\underline{\hspace{80pt}}\\
         \hline
-        答辩小组意见\vskip \stretch{1}\\[2cm]
-        \hfill 答辩委员会负责人(签字)\underline{\hspace{80pt}}\\
+        答辩小组意见\vspace{3cm}\\
+        \hfill 答辩委员会负责人（签字）\underline{\hspace{80pt}}\\
         \hline
-        \vskip \stretch{1}\\[2cm]
+        \\[2.3cm]
         成绩\underline{\hspace{80pt}}\hfill 学院（盖章）\underline{\hspace{80pt}}\\
         \hfill{\zihao{-4}年\hspace{20pt}月\hspace{20pt}日}\\
         \hline
