@@ -8,6 +8,9 @@
 
 %\RequirePackage{ctex}
 
+%=======footnote
+\RequirePackage[perpage, bottom]{footmisc}
+
 %=======page
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
@@ -67,9 +70,6 @@
 %\dottedcontents{chapter}[2cm]{\zihao{4}}{4\ccwd}{0.75pc}
 %\dottedcontents{section}[2cm]{\zihao{-4}}{2\ccwd}{0.75pc}
 %\dottedcontents{subsection}[2cm+3\ccwd]{\zihao{-4}}{3\ccwd}{0.75pc}
-%=======footnote
-\RequirePackage{perpage} %the perpage package
-\MakePerPage{footnote} %the perpage package command
 
 %=======information
 \newtoks\advisor
