@@ -2,8 +2,15 @@
 \ProvidesClass{LZU}
 [2015/023/08  LZU document class]
 
-\LoadClass[chinese,a4paper,fntef, cs4size, twoside]{ctexbook}
-%\AtEndOfPackage{\makeatletter\input{LZU.cfg}\makeatother}
+\DeclareOption{windowsnew}{
+    \PassOptionsToClass{fontset=windowsnew}{ctexbook}
+}
+\DeclareOption{fandol}{
+    \PassOptionsToClass{fontset=fandol}{ctexbook}
+}
+\ProcessOptions\relax
+\LoadClass[chinese,a4paper, cs4size, twoside]{ctexbook}
+
 \AtEndOfPackage{\input{LZU.cfg}}
 
 %\RequirePackage{ctex}
@@ -190,30 +197,30 @@
         \newcounter{ct}
         \vspace*{50pt}
         \begin{tabular}{ll}
-            \bfseries \LZU@label@titleZh
+            \bfseries \songti \LZU@label@titleZh
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\@title}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
-                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[258pt]{\bfseries\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
+                    & {\StrFindGroup{\@title}{\value{ct}}[\mygroup]\LZUunderline[258pt]{\bfseries \songti\fontspec{Times New Roman}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
-            \bfseries \LZU@label@titleEn
+            \bfseries \songti \LZU@label@titleEn
             \forloop{ct}{1}{\value{ct}<6}{%
                 \StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]%
                 \IfStrEq{\mygroup}{}{}{%
                     & {\StrFindGroup{\the\entitle}{\value{ct}}[\mygroup]\LZUunderline[258pt]{\fontspec{Times New Roman-Bold}\zihao{3}\mygroup}}\\[0.40cm]%
                 }%
             }%
-            {\bfseries \LZU@label@author} &
-            {\LZUunderline[258pt]{\bfseries \@author}}\\[0.40cm]
-            {\bfseries \LZU@label@advisor} &
-            {\LZUunderline[258pt]{\bfseries \the\advisor}} \\[0.40cm]
-            {\bfseries \LZU@label@college} &
-            {\LZUunderline[258pt]{\bfseries \the\college}} \\[0.40cm]
-            {\bfseries \LZU@label@major} &
-            {\LZUunderline[258pt]{\bfseries \the\major}}\\[0.40cm]
-            {\bfseries \LZU@label@grade} &
-            {\LZUunderline[258pt]{\bfseries \the\grade}}\\[0.40cm]
+            {\bfseries \songti \LZU@label@author} &
+            {\LZUunderline[258pt]{\bfseries \songti \@author}}\\[0.40cm]
+            {\bfseries \songti \LZU@label@advisor} &
+            {\LZUunderline[258pt]{\bfseries \songti \the\advisor}} \\[0.40cm]
+            {\bfseries \songti \LZU@label@college} &
+            {\LZUunderline[258pt]{\bfseries \songti \the\college}} \\[0.40cm]
+            {\bfseries \songti \LZU@label@major} &
+            {\LZUunderline[258pt]{\bfseries \songti \the\major}}\\[0.40cm]
+            {\bfseries \songti \LZU@label@grade} &
+            {\LZUunderline[258pt]{\bfseries \songti \the\grade}}\\[0.40cm]
         \end{tabular}
     %\vspace{\stretch{1}}
     \par
