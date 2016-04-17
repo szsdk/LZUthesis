@@ -9,6 +9,7 @@ compare
 *.bbl
 *.out
 *.toc
+*.synctex.gz
 *.tex.latexmain
 *.fdb_latexmk
 *.thm
