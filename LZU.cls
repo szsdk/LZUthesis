@@ -2,14 +2,13 @@
 \ProvidesClass{LZU}
 [2015/023/08  LZU document class]
 
-\DeclareOption{windowsnew}{
-    \PassOptionsToClass{fontset=windowsnew}{ctexbook}
-}
-\DeclareOption{fandol}{
-    \PassOptionsToClass{fontset=fandol}{ctexbook}
-}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
+
 \LoadClass[chinese,a4paper, cs4size, twoside]{ctexbook}
+
+\DeclareOption{times}{\setmainfont{Times New Roman}}
+\ProcessOptions\relax
 
 \AtEndOfPackage{\input{LZU.cfg}}
 
@@ -22,7 +21,7 @@
 \RequirePackage[top=3cm, bottom=2.54cm,outer=3.17cm, inner=3.17cm, headheight=2cm, footskip=2cm, heightrounded]{geometry}
 %=======font
 %\RequirePackage{mathptmx}
-\setmainfont{Times New Roman}
+%\setmainfont{Times New Roman}
 
 %=======package
 \RequirePackage{amsmath,amsfonts,amssymb}

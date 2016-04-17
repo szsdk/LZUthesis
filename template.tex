@@ -1,4 +1,4 @@
-\documentclass{LZU}
+\documentclass[fontset=windowsnew]{LZU}
 
 %参考文献
 \usepackage[backend=biber,gbtverbose=true,
@@ -24,8 +24,7 @@
 \usepackage{manfnt}
 
 %math package
-\usepackage[math-style=TeX]{unicode-math}
-\unimathsetup{bold-style=ISO}
+\usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
 \setmathfont{xits-math.otf}
 \newcommand{\bvec}[1]{\symbf{#1}}
 
@@ -121,6 +120,27 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \begin{note}
     在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域。
 \end{note}
+\section{字体}
+\subsection{中文字体}
+格式要求中用到的中文字体有宋体和黑体，但没有规定是什么宋体，什么黑体\footnote{市面上能见到的宋体和黑体至少有几十种。}所以默认情况不做特殊约定，\package{ctex}将根据系统自行选择。
+
+当然本模板也提供了两种字体选项：
+\begin{enumerate}
+    \item windowsnew\\
+        使用中易字体和微软雅黑字体。问题是有些地方用到了加粗的宋体，而中易宋体只有一种字重，所以\package{ctex}会使用伪粗体，排版效果不好。
+    \item fandol\\
+        使用 Fandol 中文字体，唯一的问题可能是不是中易字体。
+\end{enumerate}
+\subsection{英文字体}
+格式要求是使用Times New Roman字体。但是Times New Roman 字体和宋体（不论是中易宋体还是Fandol 宋体）相比明显偏粗，所以默认情况没有设置英文字体为Times New Roman。可以在调用宏包时加入times选项。
+\subsection{数学字体}
+格式要求中并没有对数学字体做出规定，所以默认情况是用 Latin Modern Math 字体。如果想使用和Times New Roman 配套的数学字体。由于Times New Roman不能直接用在数学公式中，建议将数学字体调成基于Timew New Roman 设计的XITS math。可以在导言区加入
+\begin{minted}{latex}
+\usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
+\setmathfont{xits-math.otf}
+\end{minted}
+来调整数学字体。当然，使用这款字体这也会导致字重偏大情况。
+
 \section{其他}
 \subsection{引用}
 在模板中已经调用了\package{cleveref}宏包。所以建议用\mintinline{latex}{\cref{***}}的方式引用，如
