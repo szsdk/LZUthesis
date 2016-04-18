@@ -117,11 +117,12 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 }
 \end{minted}
 \begin{note}
-    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域。
+    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域（比如对于书籍类型的条目会缺少address域）。
 \end{note}
 \section{字体}
 \subsection{中文字体}
 格式要求中用到的中文字体有宋体和黑体，但没有规定是什么宋体，什么黑体\footnote{市面上能见到的宋体和黑体至少有几十种。}所以默认情况不做特殊约定，\package{ctex}将根据系统自行选择。
+\note{由于需要加入封面，所以系统{\bf 必须}安装微软雅黑字体。}
 
 当然本模板也提供了两种字体选项：
 \begin{enumerate}
@@ -229,6 +230,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \subsubsection{注释}
 一般分为页末注(脚注)和篇末注。脚注，宋体， 9 磅(英 文用 Times New Roman，9 磅)，左对齐，单倍行距，段前段后 0 磅， 按阿拉伯数字编号，每页须重新编号。
 \subsection{参考文献}
+\label{subsec:reference}
 参考文献是文中引用的有具体文字来源的文献集合， 毕业论文中引用他人成果之处均应如实、详细地列出参考文献目录。各种主要参考文献按如下格式编排:
 \begin{itemize}
     \item 专著、论文集、学位论文、报告:[序号]主要责任者.文献题 名[文献类型标识M/C/D/R].出版地:出版者,出版年.起止页码(任选).
