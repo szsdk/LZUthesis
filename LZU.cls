@@ -63,8 +63,6 @@
 %\headrulecolor{black}
 
 %=======format
-%\renewcommand*\figurename{ \zihao{5}\CTEX@figurename}
-%\renewcommand*\tablename{ \zihao{5}\CTEX@tablename }
 \usepackage[font=small]{caption}
 
 \RequirePackage[titles]{tocloft}
