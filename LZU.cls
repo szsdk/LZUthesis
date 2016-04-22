@@ -12,8 +12,6 @@
 
 \AtEndOfPackage{\input{LZU.cfg}}
 
-%\RequirePackage{ctex}
-
 %=======footnote
 \RequirePackage[perpage, bottom]{footmisc}
 
@@ -42,6 +40,11 @@
 }
 \appto\frontmatter{\pagestyle{frontmatterstyle}}
 
+\DeclareOption{doublelines}{
+    \def\LZU@doublelines {}
+}
+\ProcessOptions\relax
+
 \fancypagestyle{mainmatterstyle}{
     \fancyhf{}
     \lhead{\zihao{-5}兰州大学本科生毕业论文}%
@@ -49,7 +52,11 @@
     % Footers
     \fancyfoot{} % clear all footer fields
     \fancyfoot[LE,RO]{\thepage}
-    \renewcommand{\headrulewidth}{0.4pt}% % No header rule
+    \ifdefined\LZU@doublelines
+    \renewcommand\headrule{\hrule width \hsize height 1.2pt \kern 2pt \hrule width \hsize height 0.4pt}
+    \else
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fi
 }
 
 \appto\mainmatter{\pagestyle{mainmatterstyle}}
@@ -70,10 +77,6 @@
 \renewcommand\cftchapfont{\zihao{4}}
 \renewcommand\cftsecfont{\zihao{-4}}
 \renewcommand\cftsubsecfont{\zihao{-4}}
-%\RequirePackage{titletoc}
-%\dottedcontents{chapter}[2cm]{\zihao{4}}{4\ccwd}{0.75pc}
-%\dottedcontents{section}[2cm]{\zihao{-4}}{2\ccwd}{0.75pc}
-%\dottedcontents{subsection}[2cm+3\ccwd]{\zihao{-4}}{3\ccwd}{0.75pc}
 
 %=======information
 \newtoks\advisor
@@ -139,22 +142,17 @@
     {\bfseries \fontspec{Times New Roman Bold}Key Words:} #2}
 }
 %=======space
-%\newcommand\LZUspace{\protect\CTEX@spaceChar}
-%\newcommand\LZUspace{\protect\CJK@spaceChar}
 \newcommand\LZUspace{\hspace{\ccwd}}
 
 %=======appendix
 \newcommand{\Appendix}{%
-    %\setcounter{chapter}{16}% Equivalent to "letter P"
     \setcounter{section}{0}
     \renewcommand{\thechapter}{A}%
-    \chapter*{附\LZUspace\LZUspace 录}
-    \addcontentsline{toc}{chapter}{附\LZUspace\LZUspace 录}
+    \chapter{附\LZUspace\LZUspace 录}
     \zihao{5}
 }
 \newcommand{\Thanks}{%
-    \chapter*{致\LZUspace\LZUspace 谢}
-    \addcontentsline{toc}{chapter}{致\LZUspace\LZUspace 谢}
+    \chapter{致\LZUspace\LZUspace 谢}
     \zihao{-4}\fangsong
 }
 
@@ -164,7 +162,6 @@
 \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\LZUunderline{\@ifnextchar[\LZU@underline\CTEXunderline}
 
-%\RequirePackage[thinlines]{easytable}
 
 %\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 %\newcolumntype{N}{@{}m{0pt}@{}}
@@ -177,19 +174,16 @@
     \thispagestyle{empty}
     \begin{center}
 
-    % Requires \usepackage{graphicx}
+        % Requires \usepackage{graphicx}
         \includegraphics[width=6cm]{pic/lzu.eps}\\
 
-        %\vspace{\stretch{0.4}}
         \vspace*{58pt}
         {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis\\}
         \vspace{21.8pt}
         {\zihao{4}\CJKfontspec{微软雅黑}（本\ 科\ 生）}
         \par
-    %\vspace{\stretch{1}}
         \zihao{-3}
         \def\tabcolsep{6pt}
-    %\begin{TAB}(r,0.5cm,1.25cm){ll}{ccccccc}
         \expandarg
         \newcounter{ct}
         \vspace*{50pt}
@@ -219,8 +213,8 @@
             {\bfseries \songti \LZU@label@grade} &
             {\LZUunderline[258pt]{\bfseries \songti \the\grade}}\\[0.40cm]
         \end{tabular}
-    %\vspace{\stretch{1}}
-    \par
+        %\vspace{\stretch{1}}
+        \par
         \vspace{70pt}
         {\CJKfontspec{微软雅黑}\ziju{0.3}\zihao{-4}\LZU@label@schooladdress }
     \end{center}
@@ -240,7 +234,7 @@
         {\bfseries\songti\zihao{3}{诚信责任书}}
     \end{center}
 
-    本人郑重声明:本人所呈交的学位论文,是在导师的指导下独立进行研究所取得的成果。毕业论文(设计)中凡引用他人已经发表或未发表的成果、数据、观点等, 均已明确注明出处。除文中已经注明引用的内容外, 不包含任何其他个人或集体已经发表或在网上发表的论文。
+    本人郑重声明:本人所呈交的学位论文,是在导师的指导下独立进行研究所取得的成果。毕业论文（设计）中凡引用他人已经发表或未发表的成果、数据、观点等, 均已明确注明出处。除文中已经注明引用的内容外, 不包含任何其他个人或集体已经发表或在网上发表的论文。
 
     本声明的法律责任由本人承担。
 
@@ -266,7 +260,6 @@
 
     $\square$ 不宜公开，已在学位办公室办理保密申请，解密后适用本授权书。
 
-%（请在以上选项内选择其中一项打“$\surd$”）
     （请在以上选项内选择其中一项打“$\checkmark$”）
 
     \vskip1cm
@@ -293,7 +286,7 @@
         pdfsubject = {兰州大学本科毕业论文}
     }
 }
-%\hypersetup{hidelinks,colorlinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+
 \RequirePackage[nameinlink]{cleveref}
 \renewcommand{\figureautorefname}{图}
 \crefformat{equation}{#2式(#1)#3}
@@ -306,10 +299,7 @@
 
 %grade
 \RequirePackage{tabularx}
-\RequirePackage{afterpage}
 \newcommand{\Grade}{
-    %\chapter*{论文成绩}
-%\addcontentsline{论文成绩}
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{论文成绩}
@@ -342,14 +332,11 @@
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \theorembodyfont{\rmfamily\songti}
 \theoremheaderfont{\rmfamily\heiti}
-%\theoremsymbol{\ensuremath{\blacksquare}}
 \theoremsymbol{\ensuremath{\square}}
-%\theoremstyle{nonumberplain}
 \newtheorem*{proof}{证明}
 \theoremstyle{plain}
 \theoremsymbol{}
 \qedsymbol{\ensuremath{\square}}
-%\theoremseparator{：}
 \newtheorem{assumption}{假设}[chapter]
 \newtheorem{definition}{定义}[chapter]
 \newtheorem{proposition}{命题}[chapter]
