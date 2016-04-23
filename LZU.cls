@@ -5,7 +5,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
-\LoadClass[chinese,a4paper, cs4size, twoside]{ctexbook}
+\LoadClass[chinese,a4paper, zihao=-4, twoside]{ctexbook}
 
 \DeclareOption{times}{\setmainfont{Times New Roman}}
 \ProcessOptions\relax
@@ -159,7 +159,7 @@
 % statement
 \RequirePackage{array}
 \def\LZU@underline[#1]#2{%
-\CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
+    \CJKunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\LZUunderline{\@ifnextchar[\LZU@underline\CTEXunderline}
 
 
