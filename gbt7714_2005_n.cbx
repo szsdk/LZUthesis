@@ -59,8 +59,10 @@
 		}}
 		
 %{key}{number}
+%\newbibmacro*{gbt@cbx@num@print}[2]{%
+    %\bibhyperref[#1]{\printtext[bibhyperref]{#2}}}
 \newbibmacro*{gbt@cbx@num@print}[2]{%
-	\bibhyperref[#1]{\printtext{#2}}}
+    \printtext[bibhyperref]{#2}}
 
 \DeclareFieldFormat{plain}{#1}
 \newbibmacro*{gbt@cbx@num@print@postnote}{%
@@ -78,7 +80,7 @@
 {}
 {%
 	\usebibmacro{gbt@cbx@num@print@last}%
-	\printtext{\bibclosebracket}%
+  \printtext{\bibclosebracket}%
 	\usebibmacro{gbt@cbx@num@print@postnote}}%
 
 \endinput
