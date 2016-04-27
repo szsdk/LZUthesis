@@ -22,6 +22,7 @@ bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
 \usepackage{siunitx}
 \usepackage{hologo}
 \usepackage{manfnt}
+\usepackage{commath}
 
 %math package
 \usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
@@ -33,8 +34,9 @@ bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
 \newcommand{\filename}[1]{{\ttfamily #1}}
 \newcommand{\package}[1]{{\sffamily #1}}
 
-\newtheorem{question}{Q}
 \newtheorem*{answer}{A}
+\theorembodyfont{\bf}
+\newtheorem{question}{Q}
 
 \begin{document}
 \maketitle
@@ -136,6 +138,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \subsection{英文字体}
 格式要求是使用Times New Roman字体。但是Times New Roman 字体和宋体（不论是中易宋体还是Fandol 宋体）相比明显偏粗，所以默认情况没有设置英文字体为Times New Roman。可以在调用宏包时加入times选项。
 \subsection{数学字体}
+\label{subsec:math_font}
 格式要求中并没有对数学字体做出规定，所以默认情况是用 Latin Modern Math 字体。如果想使用和Times New Roman 配套的数学字体。由于Times New Roman不能直接用在数学公式中，建议将数学字体调成基于Timew New Roman 设计的XITS math。可以在导言区加入
 \begin{minted}{latex}
 \usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
@@ -259,7 +262,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{question}
 \begin{answer}
     本模板用了\package{enumitem}来重新定义了enumerate环境item之间的距离，使之更符合中文习惯。需要\package{enumerate}宏包来实现的功能\package{enumitem}基本都能实现。如
-\begin{minted}{latex}
+\begin{minted}[breaklines,frame=single,linenos]{latex}
 \begin{enumerate}[label={\roman*.}]
     \item 把编号变成罗马数字。
     \item \package{enumitem}的具体使用请参见该宏包的帮助文档。
@@ -269,6 +272,39 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
         \item 把编号变成罗马数字。
         \item \package{enumitem}的具体使用请参见该宏包的帮助文档。
     \end{enumerate}
+\end{answer}
+\begin{question}
+    如何在数学模式中使用粗体。
+\end{question}
+\begin{answer}
+    粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\cite{mathboldfont}，这里我们只讲述方法。
+
+    实际上，模板本身没有对字体做出限制，所以理论上可以使用任何的方法。目前，一个较好的解决方案是使用\package{unicode-math}宏包，引用方法见\cref{subsec:math_font}。使\mintinline{latex}{\symbf}命令\footnote{在较老版本的\package{unicode-math}宏包中没有提供这个命令，可以用\mintinline{latex}{\mathbf}替代。}，如：
+\begin{minted}[breaklines,frame=single,linenos]{latex}
+速度$\symbf v$对时间$t$求导得到加速度$\symbf{a}$
+\end{minted}
+效果如下：\\
+速度$\symbf v$对时间$t$求导得到加速度$\symbf{a}$
+\end{answer}
+\begin{question}
+    如何正确的输入物理量。
+\end{question}
+\begin{answer}
+    使用\package{siunitx}宏包。如
+\begin{minted}[breaklines,frame=single,linenos]{latex}
+\[c=\SI{299 792 458}{m / s}\]
+\end{minted}
+    \[c=\SI{299 792 458}{m / s}\]
+\end{answer}
+\begin{question}
+    如何正确的输入微分符号。
+\end{question}
+\begin{answer}
+    使用\package{commath}宏包。
+\begin{minted}[breaklines,frame=single,linenos]{latex}
+\[\dif x, \od{f}{x}, \pd{f}{x}\]
+\end{minted}
+    \[\dif x, \od{f}{x}, \pd{f}{x}\]
 \end{answer}
 \section{数学测试}
 此处会进行一些输出测试。\footnote{脚注测试}

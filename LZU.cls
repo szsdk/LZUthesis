@@ -277,7 +277,7 @@
 %hyperlink
 %---------------------------
 \RequirePackage[unicode,psdextra]{hyperref} % Required for hyperlinks
-\hypersetup{hidelinks,breaklinks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{hidelinks,breaklinks=true,bookmarksopen=false}
 %自动写入pdf信息
 \AtBeginDocument{
     \hypersetup{
@@ -294,8 +294,10 @@
 \crefformat{table}{#2表#1#3}
 \crefformat{chapter}{#2第\zhnumber{#1}章#3}
 \crefformat{section}{#2#1节#3}
-\crefformat{subsection}{#2#1条#3}
-\crefformat{subsubsection}{#2#1款#3}
+\crefformat{subsection}{#2#1小节#3}
+\crefformat{subsubsection}{#2#1小节#3}
+%\crefformat{subsection}{#2#1条#3}
+%\crefformat{subsubsection}{#2#1款#3}
 
 %grade
 \RequirePackage{tabularx}
