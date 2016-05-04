@@ -2,8 +2,8 @@
 
 %参考文献
 \usepackage[
-	backend = biber, style = caspervector, utf8,
-	giveninits = true, sortgiveninits = true
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true
 ]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
@@ -94,17 +94,19 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .3 lzu.eps\DTcomment{校名图片}.
     .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 compile.bat\DTcomment{Windows自动编译脚本}.
-    .2 gbt7714\_2005.def\DTcomment{参考文献格式配置}.
-    .2 gbt7714\_2005\_n.bbx\DTcomment{参考文献格式配置}.
-    .2 gbt7714\_2005\_n.cbx\DTcomment{参考文献格式配置}.
+    .2 caspervector\DTcomment{参考文献格式配置}.
+    .3 biblatex-caspervector-gbk.def.
+    .3 biblatex-caspervector-utf8.def.
+    .3 caspervector.bbx.
+    .3 caspervector.cbx.
 }
 \section{参考文献}
-参考文献的格式是按照GB/T 7714-2005标准的。需要三个额外的格式配置文件：\filename{gbt7714\_2005.def}、\filename{gbt7714\_2005\_n.bbx}和\filename{gbt7714\_2005\_n.cbx}。调用的方法为在导言区加入：
+参考文献的格式是按照GB/T 7714-2005标准的。需要三个额外的格式配置文件：\filename{biblatex-caspervector-gbk.def}、\filename{biblatex-caspervector-utf8.def}、\filename{caspervector.cbx}和\filename{caspervector.bbx}。调用的方法为在导言区加入：
 \begin{minted}{latex}
-    \usepackage[backend=biber,gbtverbose=true,
-    bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
-    \addbibresource{ref.bib}
-    \renewcommand{\bibfont}{\zihao{5}}
+\usepackage[
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true
+]{biblatex}
 \end{minted}
 其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
 
@@ -117,11 +119,12 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     title={\LaTeX 入门},
     publisher ={电子工业出版社},
     address={北京},
-    usera={M}
+    type={M},
+    language={chinese}
 }
 \end{minted}
 \begin{note}
-    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域（比如对于书籍类型的条目会缺少address域）。
+    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的字段type，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的字段（比如对于书籍类型的条目会缺少address字段）。
 \end{note}
 \section{字体}
 \subsection{中文字体}
