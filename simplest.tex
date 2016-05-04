@@ -1,8 +1,13 @@
 \documentclass{LZU}
 
 %参考文献
-\usepackage[backend=biber,gbtverbose=true,
-	bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
+
+
+\usepackage[
+	backend = biber, style = caspervector, utf8,
+	giveninits = true, sortgiveninits = true
+]{biblatex}
+
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 
@@ -35,7 +40,7 @@
 \section{第一节}
 \subsection{第一条}
 \[\mathcal{X}\]
-你好，世界\cite{latextutorial}{\zihao{-4}小四}
+你好，世界\supercite{latextutorial}{\zihao{-4}小四}
 \backmatter
 %参考文献
 \printbibliography[title={参考文献},heading=bibintoc]

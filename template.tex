@@ -1,8 +1,10 @@
 \documentclass{LZU}
 
 %参考文献
-\usepackage[backend=biber,gbtverbose=true,
-bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
+\usepackage[
+	backend = biber, style = caspervector, utf8,
+	giveninits = true, sortgiveninits = true
+]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 
@@ -51,7 +53,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \tableofcontents
 \mainmatter
 \chapter{简介Introduction}
-这是作者在2015年8月借学习《\citetitle{latextutorial}》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
+这是作者在2015年8月借学习《\citetitle{latextutorial}》\supercite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 \begin{note}
     在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
 \end{note}
@@ -106,7 +108,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{minted}
 其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
 
-例如《\citetitle{latextutorial}》\cite{latextutorial}在\filename{ref.bib}中为
+例如《\citetitle{latextutorial}》\supercite{latextutorial}在\filename{ref.bib}中为
 \begin{minted}{bibtex}
 @book{latextutorial,
     author ={刘海洋},
@@ -177,7 +179,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \label{thm:stokes}
 \end{theorem}
 \begin{proof}
-    证明详见\citetitle{stokes}\cite{stokes}。
+    证明详见\citetitle{stokes}\supercite{stokes}。
     \qed
 \end{proof}
 在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
@@ -194,7 +196,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \label{thm:stokes}
 \end{theorem}
 \begin{proof}
-    证明详见\citetitle{stokes}\cite{stokes}。
+    证明详见\citetitle{stokes}\supercite{stokes}。
     \qed
 \end{proof}
 在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
@@ -277,7 +279,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     如何在数学模式中使用粗体。
 \end{question}
 \begin{answer}
-    粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\cite{mathboldfont}，这里我们只讲述方法。
+    粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\supercite{mathboldfont}，这里我们只讲述方法。
 
     实际上，模板本身没有对字体做出限制，所以理论上可以使用任何的方法。目前，一个较好的解决方案是使用\package{unicode-math}宏包，引用方法见\cref{subsec:math_font}。使\mintinline{latex}{\symbf}命令\footnote{在较老版本的\package{unicode-math}宏包中没有提供这个命令，可以用\mintinline{latex}{\mathbf}替代。}，如：
 \begin{minted}[breaklines,frame=single,linenos]{latex}
