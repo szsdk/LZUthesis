@@ -7,7 +7,6 @@
 ]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
-
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
 \title{{兰州大学本科论文非官方 \LaTeX 模板}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of}{Lanzhou University}}
@@ -94,18 +93,21 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .3 lzu.eps\DTcomment{校名图片}.
     .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 compile.bat\DTcomment{Windows自动编译脚本}.
-    .2 caspervector\DTcomment{参考文献格式配置}.
-    .3 biblatex-caspervector-gbk.def.
-    .3 biblatex-caspervector-utf8.def.
-    .3 caspervector.bbx.
-    .3 caspervector.cbx.
 }
 \section{参考文献}
-参考文献的格式是按照GB/T 7714-2005标准的。需要三个额外的格式配置文件：\filename{biblatex-caspervector-gbk.def}、\filename{biblatex-caspervector-utf8.def}、\filename{caspervector.cbx}和\filename{caspervector.bbx}。调用的方法为在导言区加入：
+参考文献的格式是按照GB/T 7714-2005标准的。调用的方法为在导言区加入：
 \begin{minted}{latex}
 \usepackage[
     backend = biber, style = caspervector, utf8,
     giveninits = true, sortgiveninits = true
+]{biblatex}
+\end{minted}
+如果想要按照编者-出版年排序，可以在导言区加入
+\begin{minted}{latex}
+\usepackage[
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true,
+    sorting=centy
 ]{biblatex}
 \end{minted}
 其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
@@ -259,6 +261,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{itemize}
 
 \backmatter
+
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
 \section{Q\&A}
