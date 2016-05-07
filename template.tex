@@ -1,11 +1,12 @@
 \documentclass{LZU}
 
 %参考文献
-\usepackage[backend=biber,gbtverbose=true,
-bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
+\usepackage[
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true
+]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
-
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
 \title{{兰州大学本科论文非官方 \LaTeX 模板}{V0.10}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of}{Lanzhou University}}
@@ -51,7 +52,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \tableofcontents
 \mainmatter
 \chapter{简介Introduction}
-这是作者在2015年8月借学习《\citetitle{latextutorial}》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
+这是作者在2015年8月借学习《\citetitle{latextutorial}》\supercite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 \begin{note}
     在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
 \end{note}
@@ -94,21 +95,26 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .3 lzu.eps\DTcomment{校名图片}.
     .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 compile.bat\DTcomment{Windows自动编译脚本}.
-    .2 gbt7714\_2005.def\DTcomment{参考文献格式配置}.
-    .2 gbt7714\_2005\_n.bbx\DTcomment{参考文献格式配置}.
-    .2 gbt7714\_2005\_n.cbx\DTcomment{参考文献格式配置}.
 }
 \section{参考文献}
-参考文献的格式是按照GB/T 7714-2005标准的。需要三个额外的格式配置文件：\filename{gbt7714\_2005.def}、\filename{gbt7714\_2005\_n.bbx}和\filename{gbt7714\_2005\_n.cbx}。调用的方法为在导言区加入：
+参考文献的格式是按照GB/T 7714-2005标准的。调用的方法为在导言区加入：
 \begin{minted}{latex}
-    \usepackage[backend=biber,gbtverbose=true,
-    bibstyle=gbt7714_2005_n,citestyle=gbt7714_2005_n]{biblatex}
-    \addbibresource{ref.bib}
-    \renewcommand{\bibfont}{\zihao{5}}
+\usepackage[
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true
+]{biblatex}
+\end{minted}
+如果想要按照编者-出版年排序，可以在导言区加入
+\begin{minted}{latex}
+\usepackage[
+    backend = biber, style = caspervector, utf8,
+    giveninits = true, sortgiveninits = true,
+    sorting=centy
+]{biblatex}
 \end{minted}
 其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
 
-例如《\citetitle{latextutorial}》\cite{latextutorial}在\filename{ref.bib}中为
+例如《\citetitle{latextutorial}》\supercite{latextutorial}在\filename{ref.bib}中为
 \begin{minted}{bibtex}
 @book{latextutorial,
     author ={刘海洋},
@@ -117,11 +123,12 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     title={\LaTeX 入门},
     publisher ={电子工业出版社},
     address={北京},
-    usera={M}
+    type={M},
+    language={chinese}
 }
 \end{minted}
 \begin{note}
-    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的域usera，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的域（比如对于书籍类型的条目会缺少address域）。
+    在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的字段type，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的字段（比如对于书籍类型的条目会缺少address字段）。
 \end{note}
 \section{字体}
 \subsection{中文字体}
@@ -179,7 +186,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \label{thm:stokes}
 \end{theorem}
 \begin{proof}
-    证明详见\citetitle{stokes}\cite{stokes}。
+    证明详见\citetitle{stokes}\supercite{stokes}。
     \qed
 \end{proof}
 在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
@@ -196,7 +203,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \label{thm:stokes}
 \end{theorem}
 \begin{proof}
-    证明详见\citetitle{stokes}\cite{stokes}。
+    证明详见\citetitle{stokes}\supercite{stokes}。
     \qed
 \end{proof}
 在三维情况下由\cref{thm:stokes}就可以得到\cref{crl:gauss}
@@ -256,6 +263,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{itemize}
 
 \backmatter
+
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
 \section{Q\&A}
@@ -279,7 +287,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     如何在数学模式中使用粗体。
 \end{question}
 \begin{answer}
-    粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\cite{mathboldfont}，这里我们只讲述方法。
+    粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\supercite{mathboldfont}，这里我们只讲述方法。
 
     实际上，模板本身没有对字体做出限制，所以理论上可以使用任何的方法。目前，一个较好的解决方案是使用\package{unicode-math}宏包，引用方法见\cref{subsec:math_font}。使\mintinline{latex}{\symbf}命令\footnote{在较老版本的\package{unicode-math}宏包中没有提供这个命令，可以用\mintinline{latex}{\mathbf}替代。}，如：
 \begin{minted}[breaklines,frame=single,linenos]{latex}
