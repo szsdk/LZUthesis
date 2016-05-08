@@ -1,11 +1,11 @@
 \documentclass{LZU}
-
 %参考文献
 \usepackage[
-    backend = biber, style = caspervector, utf8,
+    backend = biber, style = gbt77142005, utf8,
     giveninits = true, sortgiveninits = true
 ]{biblatex}
 \addbibresource{ref.bib}
+\addbibresource{example.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
 \title{{兰州大学本科论文非官方 \LaTeX 模板}{V0.10}}
@@ -24,6 +24,7 @@
 \usepackage{hologo}
 \usepackage{manfnt}
 \usepackage{commath}
+\usepackage{makecell}
 
 %math package
 \usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
@@ -56,9 +57,27 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \begin{note}
     在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
 \end{note}
-这个版本在被放出的时候就注定被抛弃了。因为新版的\package{biblatex}（v3.4）中，已经不支持这里所用的参考文献模板，所以在新版本中将会使用\package{caspervector}这个参考文献模板。
 
 本文档最新编译时间：\today。
+\section{系统要求}
+\begin{note}
+    由于个人精力有限，只能尽力保证支持本在最新的TeXLive和宏包下正常运行，尽请谅解。
+\end{note}
+\begin{table}[htb]
+    \centering
+    \caption{\package{LZU}模板系统要求}
+    \begin{tabular}{c|c|c}
+        \Xhline{1.2pt}
+        套装与包 & 版本 & 备注 \\
+        \hline
+        TeXLive & 2015 & \\
+        \hline
+        \package{ctex} & >=v2.0 & \\
+        \hline
+        \package{biblatex} & >=v3.4 & \makecell[l]{若不使用本帮助文档提供的\\参考文献解决方案，可以忽略此要求}\\
+        \hline
+    \end{tabular}
+\end{table}
 
 \chapter{模板使用}
 \section{你好，世界（hello, world）}
@@ -81,9 +100,6 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     make simplest
 \end{minted}
 或者在Windows系统中，运行\filename{compile.bat}以自动完成上述过程。
-\begin{note}
-此模板是在TeXLive 2015环境下编写调试的，所以在更低的版本中可能会出现细节上的不同。
-\end{note}
 
 \section{文件结构}
 \dirtree{%
@@ -95,27 +111,42 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .3 lzu.eps\DTcomment{校名图片}.
     .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 compile.bat\DTcomment{Windows自动编译脚本}.
+    .2 biblatex-gbt77142005-gbk.def\DTcomment{gbt编码模板中文定义文件}.
+    .2 biblatex-gbt77142005-utf8.def\DTcomment{utf8编码模板中文定义文件}.
+    .2 gbt77142005.bbx\DTcomment{顺序编码参考文献格式}.
+    .2 gbt77142005.cbx\DTcomment{顺序编码引用格式}.
+    .2 gbt77142005\_authoryear.bbx\DTcomment{编者-出版年参考文献格式}.
+    .2 gbt77142005\_authoryear.cbx\DTcomment{编者-出版年引用格式}.
 }
 \section{参考文献}
-参考文献的格式是按照GB/T 7714-2005标准的。调用的方法为在导言区加入：
-\begin{minted}{latex}
+本模板是在caspervector\autocite{caspervector}基础上改写，符合GB/T 7714-2005标准\autocite{gbt7714-2005}的\package{biblatex}\autocite{biblatex}模板，其使用方法与caspervector基本相同，若使用TeXLive套装，可通过
+\begin{minted}{bash}
+texdoc caspervector
+\end{minted}
+查看其帮助文档，或查看在线文档：\cite[引用][]{caspervector}。模板包括顺序编码引用
+和编者-出版年制引用两个部分。
+\subsection{模板调用方法}
+调用方法如下：
+\begin{minted}[breaklines,frame=single]{latex}
 \usepackage[
-    backend = biber, style = caspervector, utf8,
+    backend = biber, style=gbt77142005 ,utf8,
     giveninits = true, sortgiveninits = true
 ]{biblatex}
+\addbibresource{ref.bib}
+\renewcommand{\bibfont}{\zihao{5}}
 \end{minted}
-如果想要按照编者-出版年排序，可以在导言区加入
-\begin{minted}{latex}
+其中\filename{ref.bib}是论文的\hologo{BibTeX}文件，并通过biber\autocite{biber}编译。对于编者-出版年引用，可以这样调用参考文献模板：
+\begin{minted}[breaklines,frame=single]{latex}
 \usepackage[
-    backend = biber, style = caspervector, utf8,
-    giveninits = true, sortgiveninits = true,
-    sorting=centy
+    backend = biber, style=gbt77142005_authoryear ,utf8,
+    giveninits = true, sortgiveninits = true, sorting=centy
 ]{biblatex}
+\addbibresource{ref.bib}
+\renewcommand{\bibfont}{\zihao{5}}
 \end{minted}
-其中\filename{ref.bib}是论文的\hologo{BibTeX}文件。
-
+\subsection{\hologo{BibTeX}文件}
 例如《\citetitle{latextutorial}》\supercite{latextutorial}在\filename{ref.bib}中为
-\begin{minted}{bibtex}
+\begin{minted}[breaklines,frame=single,]{bibtex}
 @book{latextutorial,
     author ={刘海洋},
     year={2013},
@@ -127,9 +158,28 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     language={chinese}
 }
 \end{minted}
+更多的例子，见\cref{sec:bibtex_examples}。
 \begin{note}
     在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的字段type，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的字段（比如对于书籍类型的条目会缺少address字段）。
 \end{note}
+\begin{note}
+对于作者是组织的情况，组织名是区分大小写的，所以添加了两个字段organization和
+bookorganization，分别对应author和bookauthor。比如
+\begin{minted}[breaklines,frame=single]{bibtex}
+@online{6-2,
+    organization= {{Online Computer Library Center, Inc.}},
+    title = {History of OCLC},
+    type = {EB/OL},
+    url = {http://www.oclc.org/about/history/default.htm},
+    urldate = {2000-01-08},
+    language = {english},
+}
+\end{minted}
+\end{note}
+\subsection{引用方法}
+对于顺序编码和编者-出版年，最简单的方法是使用\mintinline{latex}{\autocite{key}}命令
+。对于顺序编码，可以得到上角标引用；对于编者-出版年，可以得到形如“（编者，出版年）”的引用。更多的用法，详见\cite[文献][]{biblatex-gbt,caspervector}。
+
 \section{字体}
 \subsection{中文字体}
 格式要求中用到的中文字体有宋体和黑体，但没有规定是什么宋体，什么黑体\footnote{市面上能见到的宋体和黑体至少有几十种。}所以默认情况不做特殊约定，\package{ctex}将根据系统自行选择。
@@ -149,7 +199,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \subsection{数学字体}
 \label{subsec:math_font}
 格式要求中并没有对数学字体做出规定，所以默认情况是用 Latin Modern Math 字体。如果想使用和Times New Roman 配套的数学字体。由于Times New Roman不能直接用在数学公式中，建议将数学字体调成基于Timew New Roman 设计的XITS math。可以在导言区加入
-\begin{minted}{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 \usepackage[math-style=TeX, bold-style=ISO]{unicode-math}
 \setmathfont{xits-math.otf}
 \end{minted}
@@ -160,7 +210,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 默认的页眉样式是单横线，若在引用宏包时加入选项doublelines，则可变成上粗下细的文武线。
 \subsection{引用}
 在模板中已经调用了\package{cleveref}宏包。所以建议用\mintinline{latex}{\cref{***}}的方式引用，如
-\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 引用\cref{ssub:figure}中的\cref{fig:chaos}
 \end{minted}
 引用\cref{ssub:figure}中的\cref{fig:chaos}
@@ -263,7 +313,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{itemize}
 
 \backmatter
-
+\nocite{*}
 \printbibliography[title={参考文献},heading=bibintoc]
 \Appendix
 \section{Q\&A}
@@ -272,7 +322,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{question}
 \begin{answer}
     本模板用了\package{enumitem}来重新定义了enumerate环境item之间的距离，使之更符合中文习惯。需要\package{enumerate}宏包来实现的功能\package{enumitem}基本都能实现。如
-\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 \begin{enumerate}[label={\roman*.}]
     \item 把编号变成罗马数字。
     \item \package{enumitem}的具体使用请参见该宏包的帮助文档。
@@ -290,7 +340,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\supercite{mathboldfont}，这里我们只讲述方法。
 
     实际上，模板本身没有对字体做出限制，所以理论上可以使用任何的方法。目前，一个较好的解决方案是使用\package{unicode-math}宏包，引用方法见\cref{subsec:math_font}。使\mintinline{latex}{\symbf}命令\footnote{在较老版本的\package{unicode-math}宏包中没有提供这个命令，可以用\mintinline{latex}{\mathbf}替代。}，如：
-\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 速度$\symbf v$对时间$t$求导得到加速度$\symbf{a}$
 \end{minted}
 效果如下：\\
@@ -301,7 +351,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{question}
 \begin{answer}
     使用\package{siunitx}宏包。如
-\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 \[c=\SI{299792458}{m/s}\]
 \end{minted}
     \[c=\SI{299792458}{m/s}\]
@@ -311,11 +361,14 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{question}
 \begin{answer}
     使用\package{commath}宏包。
-\begin{minted}[breaklines,frame=single,linenos]{latex}
+\begin{minted}[breaklines,frame=single,]{latex}
 \[\dif x, \od{f}{x}, \pd{f}{x}\]
 \end{minted}
     \[\dif x, \od{f}{x}, \pd{f}{x}\]
 \end{answer}
+\section{\hologo{BibTeX}文件样例}
+\label{sec:bibtex_examples}
+\inputminted[breaklines,frame=single,linenos]{bibtex}{example.bib}
 \section{数学测试}
 此处会进行一些输出测试。\footnote{脚注测试}
 \begin{itemize}
@@ -325,6 +378,6 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     \item \[\fint\intbar\]
 \end{itemize}
 \Thanks
-感谢戴维同学的测试，以及李志奇编写的GB/T7714-2005 标准的 biblatex 格式文件。
+感谢戴维同学的测试。
 \Grade
 \end{document}

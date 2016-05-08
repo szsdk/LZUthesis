@@ -1,15 +1,12 @@
 \documentclass{LZU}
 
 %参考文献
-
-
 \usepackage[
-	backend = biber, style = caspervector, utf8,
-	giveninits = true, sortgiveninits = true
+    backend = biber, style = gbt77142005, utf8,
+    giveninits = true, sortgiveninits = true
 ]{biblatex}
-
-\addbibresource{ref.bib}
-\renewcommand{\bibfont}{\zihao{5}}
+\addbibresource{ref.bib}%参考文献bib文件
+\renewcommand{\bibfont}{\zihao{5}}%设置参考文献字体
 
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
 \title{{标}{题}}

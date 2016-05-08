@@ -1,0 +1,18 @@
+\ProvidesFile{biblatex-gbt77142005-utf8.def}%
+	[2016/03/31 v0.2.5 Chinese punctuations and captions in UTF-8]
+
+\newcommand*\bbx@cnldquot{“}
+\newcommand*\bbx@cnrdquot{”}
+\newcommand*\bbx@cncomma{，}
+\newcommand*\bbx@cnscolon{；}
+\newcommand*\bbx@cncolon{:}
+\newcommand*\bbx@cnperiod{．}
+\newcommand*\bbx@cnetal{等}
+\newcommand*\bbx@cnauth{著}
+\newcommand*\bbx@cnedit{编}
+\newcommand*\bbx@cntrans{译}
+\newcommand*\bbx@cnin{//}
+\newcommand*\bbx@cnretr{检索于}
+\newcommand*\bbx@cnbib{参考文献}
+
+% vim:ft=tex:ts=2:sw=2
