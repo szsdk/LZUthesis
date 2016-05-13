@@ -180,6 +180,30 @@ bookorganization，分别对应author和bookauthor。比如
 对于顺序编码和编者-出版年，最简单的方法是使用\mintinline{latex}{\autocite{key}}命令
 。对于顺序编码，可以得到上角标引用；对于编者-出版年，可以得到形如“（编者，出版年）”的引用。更多的用法，详见\cite[文献][]{biblatex-gbt,caspervector}。
 
+\section{论文成绩}
+关于论文成绩页，有以下内容可以在模板中输入：
+\begin{itemize}
+    \item 导师评语：\mintinline{latex}{\supervisorcomment}
+    \item 建议成绩：\mintinline{latex}{\recommendedgrade}
+    \item 指导教师签字：\mintinline{latex}{\supervisorsignature}\footnote{针对导师是校外老师，可能只能得到电子签名的情况。}
+    \item 答辩小组意见：\mintinline{latex}{\committeecomment}\footnote{通常不用。}
+    \item （最终）成绩：\mintinline{latex}{\finalgrade}\footnote{通常不用。}
+\end{itemize}
+可以通过重定义这些命令来修改内容，如添加导师的签名，可以通过插入图片的方式：
+\begin{minted}[breaklines,frame=single,]{latex}
+\renewcommand{\supervisorsignature}{
+    \raisebox{-10pt}{
+        \includegraphics[width=60pt]{pic/signature.pdf}
+    }
+}
+\end{minted}
+对于重新定义的\mintinline{latex}{\supervisorsignature}：
+\begin{itemize}
+    \item \mintinline{latex}{{-10pt}}：用于控制签名的基线。
+    \item \mintinline{latex}{[width=60pt]}：用于控制签名图片的宽度。下划线的宽度是\SI{80}{pt}，所以通常这个值比\SI{80}{pt}略小，如\SI{60}{pt}。
+    \item \mintinline{latex}{pic/signature.pdf}：签名图片的位置。
+\end{itemize}
+其他命令推荐的重定义方法参见代码\ref{lst:simplest}。
 \section{字体}
 \subsection{中文字体}
 格式要求中用到的中文字体有宋体和黑体，但没有规定是什么宋体，什么黑体\footnote{市面上能见到的宋体和黑体至少有几十种。}所以默认情况不做特殊约定，\package{ctex}将根据系统自行选择。
@@ -204,7 +228,6 @@ bookorganization，分别对应author和bookauthor。比如
 \setmathfont{xits-math.otf}
 \end{minted}
 来调整数学字体。当然，使用这款字体这也会导致字重偏大情况。
-
 \section{其他}
 \subsection{页眉样式}
 默认的页眉样式是单横线，若在引用宏包时加入选项doublelines，则可变成上粗下细的文武线。
