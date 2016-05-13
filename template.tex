@@ -58,6 +58,11 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
 \end{note}
 
+此模板是基于\package{ctexbook}编写的，所以基本支持所有\package{ctexbook}的选项
+。此部分可参见\package{ctex}的帮助文档\cite{ctex}，但为保证排版效果\emph{不建议
+}用户使用除本文档提到的其他选项。考虑到通常使用此模板的同学可能刚接触\LaTeX 不
+久，所以本文档是以tutorial的形式而非严格的manual的形式写成的。
+
 本文档最新编译时间：\today。
 \section{系统要求}
 \begin{note}
@@ -357,7 +362,7 @@ bookorganization，分别对应author和bookauthor。比如
     \end{enumerate}
 \end{answer}
 \begin{question}
-    如何在数学模式中使用粗体。
+    如何在数学模式中使用粗体？
 \end{question}
 \begin{answer}
     粗体是数学，物理中常见的一种形式。关于这个问题的原理，可以参见知乎中\href{https://www.zhihu.com/question/25290041/answer/30422583}{刘海洋关于这个问题的回答}\supercite{mathboldfont}，这里我们只讲述方法。
@@ -370,7 +375,7 @@ bookorganization，分别对应author和bookauthor。比如
 速度$\symbf v$对时间$t$求导得到加速度$\symbf{a}$
 \end{answer}
 \begin{question}
-    如何正确的输入物理量。
+    如何正确的输入物理量？
 \end{question}
 \begin{answer}
     使用\package{siunitx}宏包。如
@@ -380,7 +385,7 @@ bookorganization，分别对应author和bookauthor。比如
     \[c=\SI{299792458}{m/s}\]
 \end{answer}
 \begin{question}
-    如何正确的输入微分符号。
+    如何正确的输入微分符号？
 \end{question}
 \begin{answer}
     使用\package{commath}宏包。
@@ -388,6 +393,15 @@ bookorganization，分别对应author和bookauthor。比如
 \[\dif x, \od{f}{x}, \pd{f}{x}\]
 \end{minted}
     \[\dif x, \od{f}{x}, \pd{f}{x}\]
+\end{answer}
+\begin{question}
+    如何进行单面打印？
+\end{question}
+\begin{answer}
+    在引用模板时加入oneside选项，即
+\begin{minted}[breaklines,frame=single,]{latex}
+\documentclass[oneside]{LZU}
+\end{minted}
 \end{answer}
 \section{\hologo{BibTeX}文件样例}
 \label{sec:bibtex_examples}
