@@ -288,7 +288,6 @@
 }
 
 \RequirePackage[nameinlink]{cleveref}
-\renewcommand{\figureautorefname}{图}
 \crefformat{equation}{#2式(#1)#3}
 \crefformat{figure}{#2图#1#3}
 \crefformat{table}{#2表#1#3}

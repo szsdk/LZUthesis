@@ -1,4 +1,4 @@
-\documentclass{LZU}
+\documentclass[oneside]{LZU}
 %参考文献
 \usepackage[
     backend = biber, style = gbt77142005, utf8,
@@ -8,7 +8,7 @@
 \addbibresource{example.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
-\title{{兰州大学本科论文非官方 \LaTeX 模板}{V0.20a}}
+\title{{兰州大学本科论文非官方}{\LaTeX 模板V0.20a}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of}{Lanzhou University}}
 \author{沈周}
 
@@ -39,6 +39,7 @@
 \newtheorem*{answer}{A}
 \theorembodyfont{\bf}
 \newtheorem{question}{Q}
+\crefname{question}{问题}{问题}
 
 \begin{document}
 \maketitle
@@ -55,7 +56,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \chapter{简介Introduction}
 这是作者在2015年8月借学习《\citetitle{latextutorial}》\supercite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 \begin{note}
-    在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。
+    在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。如果一定要编译，请参见\cref{qus:compilethisfile}。
 \end{note}
 
 此模板是基于\package{ctexbook}编写的，所以基本支持所有\package{ctexbook}的选项
@@ -346,6 +347,12 @@ bookorganization，分别对应author和bookauthor。比如
 \Appendix
 \section{Q\&A}
 \begin{question}
+    毕业论文可以不可以交pdf文件？
+\end{question}
+\begin{answer}
+    以作者的个人经验，可以。没有任何问题。
+\end{answer}
+\begin{question}
     引用\package{enumerate}宏包之后无法编译通过。
 \end{question}
 \begin{answer}
@@ -402,6 +409,20 @@ bookorganization，分别对应author和bookauthor。比如
 \begin{minted}[breaklines,frame=single,]{latex}
 \documentclass[oneside]{LZU}
 \end{minted}
+\end{answer}
+\begin{question}
+    为什么不能编译\filename{template.tex}这个文件？
+    \label{qus:compilethisfile}
+\end{question}
+\begin{answer}
+    因为官方的pygments中没有bibtex的lexer，所以我是自己安装了Marco D. Adelfio的bibtex-pygments-lexer 0.0.1\autocite{biblatexlexer}。安装之后，就可以通过
+\begin{minted}{bash}
+    xelatex -shecll-escape template.tex
+    biber template
+    xelatex -shecll-escape template.tex
+    xelatex -shecll-escape template.tex
+\end{minted}
+来编译。
 \end{answer}
 \section{\hologo{BibTeX}文件样例}
 \label{sec:bibtex_examples}
