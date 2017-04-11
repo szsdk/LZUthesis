@@ -1,6 +1,6 @@
-%vim: set ft=latex \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{LZU}
-[2015/023/08  LZU document class]
+%vim: set ft=latex
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{LZU}[2015/23/08  LZU document class]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
@@ -36,7 +36,8 @@
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
     \fancyfoot{} % clear all footer fields
-    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[LE,RO]{\thepage} %
+    \renewcommand{\thepage}{\Roman{page}}
 }
 \appto\frontmatter{\pagestyle{frontmatterstyle}}
 
@@ -77,6 +78,7 @@
 \renewcommand\cftchapfont{\zihao{4}}
 \renewcommand\cftsecfont{\zihao{-4}}
 \renewcommand\cftsubsecfont{\zihao{-4}}
+\renewcommand\cftchappagefont{\mdseries}
 
 %=======information
 \newtoks\advisor
