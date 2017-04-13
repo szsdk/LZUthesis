@@ -1,4 +1,1 @@
-xelatex simplest.tex
-biber simplest
-xelatex simplest.tex
-xelatex simplest.tex
+latexmk -xelatex simplest
