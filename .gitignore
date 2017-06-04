@@ -5,6 +5,7 @@ compare
 *.fls
 *.run.xml
 *.aux
+*.xdv
 *.log
 *.bbl
 *.out
