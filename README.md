@@ -4,8 +4,8 @@
 
 ## 安装
 
-在 (Release)[https://github.com/szsdk/LZUthesis/releases] 中下载对应版本
-（通常是最新版），解压即可。
+在 (Release)[https://github.com/szsdk/LZUthesis/releases] 中下载名为
+`LZUThesis_XXX.zip`的文件解压即可。其中`XXX`是版本号，通常请下载最新版。
 
 ## 使用
 

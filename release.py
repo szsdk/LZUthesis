@@ -29,4 +29,4 @@ def copy_files(fs:dict, src_folder, tag_folder):
             check_call(f'cp {src_folder}/{src} {tag_folder}/{tag}', shell=True)
 
 copy_files(files, src_folder='.', tag_folder=FOLDER)
-check_call(f'zip {FOLDER}.zip {FOLDER}', shell=True)
+check_call(f'zip {FOLDER}.zip {FOLDER}/*', shell=True)
