@@ -1,11 +1,13 @@
-main:all
+main: simplest
 
-all:template.tex
-	latexmk -xelatex -shell-escape template.tex
+all: doc simplest
+
+doc:doc.tex
+	latexmk -xelatex -shell-escape doc.tex
 
 simplest:simplest.tex
 	latexmk -xelatex simplest.tex
 
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.bcf *.xml *~ *.pyg *.xdv *.thm\
-			*.fls
+			*.fls *.fdb_latexmk

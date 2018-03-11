@@ -8,7 +8,7 @@
 \addbibresource{example.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 %注意，这里一定要两个大括号，里面的那个大括号用于长标题在封面中的断行
-\title{{兰州大学本科论文非官方}{\LaTeX 模板V0.20a}}
+\title{{兰州大学本科论文非官方}{\LaTeX 模板V0.20}}
 \entitle{{The unofficial \LaTeX{} template for }{the undergraduate thesis of }{Lanzhou University}}
 \author{沈周}
 
@@ -54,10 +54,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \tableofcontents
 \mainmatter
 \chapter{简介Introduction}
-这是作者在2015年8月借学习《\citetitle{latextutorial}》\supercite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
-\begin{note}
-    在使用本模板之前，请仔细阅读本文档。并且请\textbf{不要}试图自己编译此文档（你是不会成功的）。如果一定要编译，请参见\cref{qus:compilethisfile}。
-\end{note}
+这是作者在2015年8月借学习《\citetitle{latextutorial}》\cite{latextutorial}一书之机，也为来年毕业论文之备写的一份{\it 非官方}模板。
 
 此模板是基于\package{ctexbook}编写的，所以基本支持所有\package{ctexbook}的选项
 。此部分可参见\package{ctex}的帮助文档\cite{ctex}，但为保证排版效果\emph{不建议
@@ -76,7 +73,7 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
         \Xhline{1.2pt}
         套装与包 & 版本 & 备注 \\
         \hline
-        TeXLive & 2016/2017 & \\
+        TeXLive & 2017 & \\
         \hline
         \package{ctex} & >=v2.0 & \\
         \hline
@@ -103,23 +100,27 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
 \end{minted}
 在Linux系统中，可以直接输入
 \begin{minted}{bash}
-    make simplest
+    make
 \end{minted}
 或者在Windows系统中，运行\filename{compile.bat}以自动完成上述过程。
 
 \section{文件结构}
 \dirtree{%
     .1 ./.
-    .2 template.tex\DTcomment{主文件}.
+    .2 compile.bat\DTcomment{Windows自动编译脚本}.
     .2 LZU.cls\DTcomment{cls模板文件}.
     .2 LZU.cfg\DTcomment{配置文件}.
+    .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 pic/.
     .3 lzu.eps\DTcomment{校名图片}.
-    .2 Makefile\DTcomment{Linux自动编译脚本}.
-    .2 compile.bat\DTcomment{Windows自动编译脚本}.
+    .3 signature.pdf\DTcomment{样例签名图片}.
+    .2 simplest.pdf\DTcomment{示例 pdf 文件}.
+    .2 simplest.tex\DTcomment{示例 \TeX 文件}.
+    .2 帮助文档.pdf\DTcomment{帮助文档}.
 }
 \section{参考文献}
-建议使用\package{biblatex-gb7714-2015}这一参考文献样式，其使用方法，TeXLive套装，可通过
+建议使用\package{biblatex-gb7714-2015}这一参考文献样式，其使用方法，若已安装
+TeXLive套装，可通过
 \begin{minted}{bash}
 texdoc biblatex-gb7714-2015
 \end{minted}
@@ -381,20 +382,6 @@ texdoc biblatex-gb7714-2015
 \begin{minted}[breaklines,frame=single,]{latex}
 \documentclass[oneside]{LZU}
 \end{minted}
-\end{answer}
-\begin{question}
-    为什么不能编译\filename{template.tex}这个文件？
-    \label{qus:compilethisfile}
-\end{question}
-\begin{answer}
-    因为官方的pygments中没有bibtex的lexer，所以我是自己安装了Marco D. Adelfio的bibtex-pygments-lexer 0.0.1\autocite{biblatexlexer}。安装之后，就可以通过
-\begin{minted}{bash}
-    xelatex -shecll-escape template.tex
-    biber template
-    xelatex -shecll-escape template.tex
-    xelatex -shecll-escape template.tex
-\end{minted}
-来编译。
 \end{answer}
 \section{\hologo{BibTeX}文件样例}
 \label{sec:bibtex_examples}
