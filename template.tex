@@ -1,8 +1,8 @@
 \documentclass[oneside]{LZU}
 %参考文献
 \usepackage[
-    backend = biber, style = gbt77142005, utf8,
-    giveninits = true, sortgiveninits = true
+    backend = biber, style = gb7714-2015,
+    citestyle=gb7714-2015
 ]{biblatex}
 \addbibresource{ref.bib}
 \addbibresource{example.bib}
@@ -117,36 +117,23 @@ Be careful, however, if you decide to set the indent to zero, then it means you 
     .3 lzu.eps\DTcomment{校名图片}.
     .2 Makefile\DTcomment{Linux自动编译脚本}.
     .2 compile.bat\DTcomment{Windows自动编译脚本}.
-    .2 biblatex-gbt77142005-gbk.def\DTcomment{gbt编码模板中文定义文件}.
-    .2 biblatex-gbt77142005-utf8.def\DTcomment{utf8编码模板中文定义文件}.
-    .2 gbt77142005.bbx\DTcomment{顺序编码参考文献格式}.
-    .2 gbt77142005.cbx\DTcomment{顺序编码引用格式}.
-    .2 gbt77142005\_authoryear.bbx\DTcomment{编者-出版年参考文献格式}.
-    .2 gbt77142005\_authoryear.cbx\DTcomment{编者-出版年引用格式}.
 }
 \section{参考文献}
-本模板是在caspervector\autocite{caspervector}基础上改写，符合GB/T 7714-2005标准\autocite{gbt7714-2005}的\package{biblatex}\autocite{biblatex}模板，其使用方法与caspervector基本相同，若使用TeXLive套装，可通过
+建议使用\package{biblatex-gb7714-2015}这一参考文献样式，其使用方法，TeXLive套装，可通过
 \begin{minted}{bash}
-texdoc caspervector
+texdoc biblatex-gb7714-2015
 \end{minted}
-查看其帮助文档，或查看在线文档：\cite[引用][]{caspervector}。模板包括顺序编码引用
-和编者-出版年制引用两个部分。
+查看其帮助文档，或查看\href{https://ctan.org/pkg/biblatex-gb7714-2015}{在线文档}。
 \subsection{模板调用方法}
 调用方法如下：
 \begin{minted}[breaklines,frame=single]{latex}
-\usepackage[
-    backend = biber, style=gbt77142005 ,utf8,
-    giveninits = true, sortgiveninits = true
-]{biblatex}
+\usepackage[ backend=biber, style=gb7714-2015 ]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 \end{minted}
 其中\filename{ref.bib}是论文的\hologo{BibTeX}文件，并通过biber\autocite{biber}编译。对于编者-出版年引用，可以这样调用参考文献模板：
 \begin{minted}[breaklines,frame=single]{latex}
-\usepackage[
-    backend = biber, style=gbt77142005_authoryear ,utf8,
-    giveninits = true, sortgiveninits = true, sorting=centy
-]{biblatex}
+\usepackage[ backend=biber, style=gb7714-2015ay ]{biblatex}
 \addbibresource{ref.bib}
 \renewcommand{\bibfont}{\zihao{5}}
 \end{minted}
@@ -160,31 +147,16 @@ texdoc caspervector
     title={\LaTeX 入门},
     publisher ={电子工业出版社},
     address={北京},
-    type={M},
-    language={chinese}
+    type={M}
 }
 \end{minted}
 更多的例子，见\cref{sec:bibtex_examples}。
 \begin{note}
     在使用时，\hologo{BibTeX}文件中要多输入一个文献类型标识的字段type，其值请查看\cref{subsec:reference}。并且请仔细检查生成的引用条目，因为直接从Google Scholar等网站拷贝下来的\hologo{BibTeX}条目可能会缺少某些必要的字段（比如对于书籍类型的条目会缺少address字段）。
 \end{note}
-\begin{note}
-对于作者是组织的情况，组织名是区分大小写的，所以添加了两个字段organization和
-bookorganization，分别对应author和bookauthor。比如
-\begin{minted}[breaklines,frame=single]{bibtex}
-@online{6-2,
-    organization= {{Online Computer Library Center, Inc.}},
-    title = {History of OCLC},
-    type = {EB/OL},
-    url = {http://www.oclc.org/about/history/default.htm},
-    urldate = {2000-01-08},
-    language = {english},
-}
-\end{minted}
-\end{note}
 \subsection{引用方法}
 对于顺序编码和编者-出版年，最简单的方法是使用\mintinline{latex}{\autocite{key}}命令
-。对于顺序编码，可以得到上角标引用；对于编者-出版年，可以得到形如“（编者，出版年）”的引用。更多的用法，详见\cite[文献][]{biblatex-gbt,caspervector}。
+。对于顺序编码，可以得到上角标引用；对于编者-出版年，可以得到形如“（编者，出版年）”的引用。更多的用法，详见\cite{biblatex-gbt}。
 
 \section{论文成绩}
 关于论文成绩页，有以下内容可以在模板中输入：

@@ -1,5 +1,6 @@
 _minted*
 compare
+*.pdf
 *.blg
 *.bcf
 *.fls
