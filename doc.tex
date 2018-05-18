@@ -342,6 +342,15 @@ texdoc biblatex-gb7714-2015
     \end{enumerate}
 \end{answer}
 \begin{question}
+    Windows 中字体无法正常加粗。
+\end{question}
+\begin{answer}
+    对于大部分理科同学，可以强行指定使用Fandol字体，即在开头加入\mintinline{latex}{fontset}
+\begin{minted}[breaklines,frame=single,]{latex}
+\documentclass[fontset=fandol]{LZU}
+\end{minted}
+\end{answer}
+\begin{question}
     如何在数学模式中使用粗体？
 \end{question}
 \begin{answer}
