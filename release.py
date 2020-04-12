@@ -1,5 +1,5 @@
 from subprocess import check_call
-VERSION = '0.2.2019'
+VERSION = '0.2.2020'
 FOLDER = f'LZUThesis_{VERSION}'
 check_call('make all -j2', shell=True)
 check_call('make clean', shell=True)
