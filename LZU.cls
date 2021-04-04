@@ -12,6 +12,9 @@
 
 \AtEndOfPackage{\input{LZU.cfg}}
 
+%=======for CJKunderline
+\RequirePackage{xeCJKfntef}
+
 %=======footnote
 \RequirePackage[perpage, bottom]{footmisc}
 
@@ -180,9 +183,9 @@
         \includegraphics[width=6cm]{pic/lzu.eps}\\
 
         \vspace*{58pt}
-        {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{微软雅黑-Bold}\LZU@label@thesis\\}
+        {\fontsize{28bp}{0pt}\ziju{1}\CJKfontspec{Microsoft YaHei-Bold}\LZU@label@thesis\\}
         \vspace{21.8pt}
-        {\zihao{4}\CJKfontspec{微软雅黑}（本\ 科\ 生）}
+        {\zihao{4}\CJKfontspec{Microsoft YaHei}（本\ 科\ 生）}
         \par
         \zihao{-3}
         \def\tabcolsep{6pt}
@@ -218,7 +221,7 @@
         %\vspace{\stretch{1}}
         \par
         \vspace{70pt}
-        {\CJKfontspec{微软雅黑}\ziju{0.3}\zihao{-4}\LZU@label@schooladdress }
+        {\CJKfontspec{Microsoft YaHei}\ziju{0.3}\zihao{-4}\LZU@label@schooladdress }
     \end{center}
     \clearpage
 }
