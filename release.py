@@ -15,7 +15,7 @@ files = {
     "Makefile": "Makefile",
     "ref.bib": "ref.bib",
     "simplest.tex": "simplest.tex",
-    "simplest.pdf": "simplest.pdf",
+    "build/simplest.pdf": "simplest.pdf",
     "doc.pdf": "帮助文档.pdf",
 }
 
