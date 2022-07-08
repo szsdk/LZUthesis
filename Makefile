@@ -3,11 +3,10 @@ main: simplest
 all: doc simplest
 
 doc:doc.tex
-	latexmk -xelatex --shell-escape doc.tex
-	cp build/doc.pdf ./
+	latexmk --quiet doc.tex
 
 simplest:simplest.tex
-	latexmk -xelatex simplest.tex
+	latexmk --quiet simplest.tex
 
 clean:
-	rm build -fr
+	rm -fr build
