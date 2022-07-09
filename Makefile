@@ -2,10 +2,10 @@ main: simplest
 
 all: doc simplest
 
-doc:doc.tex
+doc: doc.tex
 	latexmk --quiet doc.tex
 
-simplest:simplest.tex
+simplest: simplest.tex
 	latexmk --quiet simplest.tex
 
 clean:

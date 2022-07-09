@@ -1,22 +1,20 @@
+from pathlib import Path
+import shutil
 import os
 from subprocess import check_call
 
 VERSION = "0.2.2022"
-FOLDER = f"LZUThesis_{VERSION}"
-check_call("make all -j2", shell=True)
-check_call("make clean", shell=True)
-os.system("rm LZUThesis_* -fr")
+FOLDER = Path(f"LZUThesis_{VERSION}".replace(".", "_"))
 
-files = {
+FILES = {
     "pic": {"lzu.eps": "lzu.eps", "signature.pdf": "signature.pdf"},
     "compile.bat": "compile.bat",
     "LZU.cfg": "LZU.cfg",
     "LZU.cls": "LZU.cls",
-    "Makefile": "Makefile",
     "ref.bib": "ref.bib",
     "simplest.tex": "simplest.tex",
     "build/simplest.pdf": "simplest.pdf",
-    "doc.pdf": "帮助文档.pdf",
+    "build/doc.pdf": "帮助文档.pdf",
 }
 
 
@@ -30,6 +28,19 @@ def copy_files(fs: dict, src_folder, tag_folder):
         else:
             check_call(f"cp {src_folder}/{src} {tag_folder}/{tag}", shell=True)
 
+check_call("make all -j2", shell=True)
+if FOLDER.exists():
+    shutil.rmtree(FOLDER)
 
-copy_files(files, src_folder=".", tag_folder=FOLDER)
-check_call(f"zip {FOLDER}.zip {FOLDER}/*", shell=True)
+copy_files(FILES, src_folder=".", tag_folder=FOLDER)
+with open(f"{FOLDER}/Makefile", "w") as fp:
+    print("""main: simplest.tex
+	latexmk --quiet -xelatex simplest.tex
+
+clean:
+	latexmk -c""", file = fp)
+
+zip_dir = FOLDER.with_suffix(".zip")
+if zip_dir.exists():
+    os.remove(zip_dir)
+check_call(f"zip {zip_dir} {FOLDER}/*", shell=True)
